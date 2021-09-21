@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class Competition {
+	@SuppressWarnings("unused")
 	private final List<Competitor> competitors;
 	
 	public Competition(List<Competitor> competitors) {
