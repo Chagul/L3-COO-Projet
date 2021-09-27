@@ -3,12 +3,14 @@ package main.java.fr.ulille.l3.competitions;
 import java.util.List;
 import java.util.Map;
 
+import main.java.fr.ulille.l3.excpetions.EmptyCompetitorsListException;
+
 public abstract class Competition {
 	private final List<Competitor> competitors;
 	protected Leaderboard leaderboard;
 
 
-	public Competition(List<Competitor> competitors) {
+	public Competition(List<Competitor> competitors) throws NullPointerException, EmptyCompetitorsListException {
 		this.competitors = competitors;
 		this.leaderboard = new Leaderboard(competitors);
 	}
