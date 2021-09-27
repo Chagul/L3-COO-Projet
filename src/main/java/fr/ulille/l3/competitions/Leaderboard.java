@@ -46,7 +46,7 @@ public class Leaderboard {
 	public void showRanking() {
 		sortRankingByScore();
 		for (Map.Entry<Competitor,Integer> entryMap : ranking.entrySet()) {
-			System.out.println(entryMap.getKey() + "-" + entryMap.getValue());
+			System.out.println(entryMap.getKey().getName() + "-" + entryMap.getValue());
 		}
 	}
 
