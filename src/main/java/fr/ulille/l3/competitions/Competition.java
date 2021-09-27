@@ -4,26 +4,34 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class Competition {
-	@SuppressWarnings("unused")
 	private final List<Competitor> competitors;
-	
+	protected Leaderboard leaderboard;
+
+
 	public Competition(List<Competitor> competitors) {
 		this.competitors = competitors;
+		this.leaderboard = new Leaderboard(competitors);
 	}
-	
+
 	public void play() {
-		
+
 	}
-	
+
 	protected void play(List<Competitor> competitors) {
-		
+		for(int indexCompetitor1 = 0; indexCompetitor1 < competitors.size(); indexCompetitor1++) 
+			for(int indexCompetitor2 = 1+indexCompetitor1; indexCompetitor2 < competitors.size(); indexCompetitor2++) {
+				playMatch(competitors.get(indexCompetitor1),competitors.get(indexCompetitor2));
+			}
+
 	}
-	
+
 	protected void playMatch(Competitor c1, Competitor c2) {
-		
+		Competitor winner = new BasicMatch(c1,c2).play();
+		leaderboard.incrScore(winner);
+		System.out.println(c1.getName() + "vs" + c2.getName() + "--> Winner : " + winner.getName());
 	}
-	
-	public Map<Competitor, Integer> ranking() {
-		return null;
+
+	public void ranking() {
+		leaderboard.showRanking();
 	}
 }
