@@ -1,4 +1,4 @@
-package main.java.fr.ulille.l3.competitions;
+package main.java.fr.ulille.l3.modele;
 
 import java.util.HashMap;
 import java.util.List;
@@ -13,9 +13,9 @@ public class Leaderboard {
 
 	/**
 	 * 
-	 * @param competitors
-	 * @throws NullPointerException
-	 * @throws EmptyCompetitorsListException
+	 * @param competitors The competitors present in the competitions played
+	 * @throws NullPointerException Thrown if the competitor list point to an NULL referenced array
+	 * @throws EmptyCompetitorsListException Thrown if the competitor list is empty
 	 */
 	public Leaderboard(List<Competitor> competitors) throws NullPointerException, EmptyCompetitorsListException {
 		if(competitors.isEmpty()) {
@@ -30,27 +30,28 @@ public class Leaderboard {
 	}
 
 	/**
-	 * 
-	 * @param aCompetitor
+	 * Increment the score of a competitor
+	 * @param aCompetitor The competitor that will get a point
 	 */
 	public void incrScore(Competitor aCompetitor) {
 		this.ranking.put(aCompetitor, this.ranking.get(aCompetitor) + 1);
 	}
 
 	/**
-	 * 
+	 * Print the result of the competition, by descending value. Ranking will be sorted here.
 	 */
 	public void showRanking() {
 		ranking = MapUtil.sortByDescendingValue(ranking);
+		System.out.println("*** RANKING ***");
 		for (Map.Entry<Competitor,Integer> entryMap : ranking.entrySet()) {
-			System.out.println(entryMap.getKey().getName() + "->" + entryMap.getValue());
+			System.out.println(entryMap.getKey().getName() + "-->" + entryMap.getValue());
 		}
 	}
 
 
 	/**
 	 * 
-	 * @return
+	 * @return The list of competitors with their score attached
 	 */
 	public Map<Competitor, Integer> getRanking() {
 		return ranking;

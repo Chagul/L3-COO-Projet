@@ -1,4 +1,6 @@
-package main.java.fr.ulille.l3.competitions;
+package main.java.fr.ulille.l3.match;
+
+import main.java.fr.ulille.l3.modele.Competitor;
 
 public abstract class Match {
 

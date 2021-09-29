@@ -10,9 +10,9 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.java.fr.ulille.l3.competitions.Competitor;
-import main.java.fr.ulille.l3.competitions.Leaderboard;
 import main.java.fr.ulille.l3.excpetions.EmptyCompetitorsListException;
+import main.java.fr.ulille.l3.modele.Competitor;
+import main.java.fr.ulille.l3.modele.Leaderboard;
 
 class TestLeaderboard {
 	
@@ -20,6 +20,10 @@ class TestLeaderboard {
 	private Competitor c1, c2, c3;
 	List<Competitor> players;
 	
+	
+	/**
+	 * Init a new leaderboard with 3 players that have 0 points each
+	 */
 	@BeforeEach
 	void init() {
 		c1 = new Competitor("Lucas");
@@ -34,6 +38,9 @@ class TestLeaderboard {
 		}
 	}
 
+	/**
+	 * Test if the leaderboard set point to 0 for everybody in the players
+	 */
 	@Test
 	void testInit() {
 		boolean valuesToZero = true;
@@ -49,6 +56,11 @@ class TestLeaderboard {
 		assertEquals(true, valuesToZero);
 	}
 	
+	/**
+	 * Test if exceptions are thrown when we give and empty competitor list to create the leaderboard
+	 * @throws NullPointerException 
+	 * @throws EmptyCompetitorsListException 
+	 */
 	@Test
 	void testInitWithEmptyCompetitorList() throws NullPointerException, EmptyCompetitorsListException {
 		List<Competitor> emptyList = new ArrayList<Competitor>();
@@ -57,6 +69,9 @@ class TestLeaderboard {
 		});
 	}
 	
+	/**
+	 * Test if the scores are incremented when incrScore is called
+	 */
 	@Test
 	void testIncrScore() {
 		leaderboard.incrScore(c3);

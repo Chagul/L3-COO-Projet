@@ -1,6 +1,8 @@
-package main.java.fr.ulille.l3.competitions;
+package main.java.fr.ulille.l3.match;
 
 import java.util.Random;
+
+import main.java.fr.ulille.l3.modele.Competitor;
 
 public class BasicMatch extends Match {
 
@@ -8,6 +10,10 @@ public class BasicMatch extends Match {
 		super(c1,c2);
 	}
 	
+	/**
+	 * Play a basic match where the winner is chosen randomly
+	 * @return randomWinner : the winner of the match
+	 */
 	@Override
 	public Competitor play() {
 		Random rng = new Random();

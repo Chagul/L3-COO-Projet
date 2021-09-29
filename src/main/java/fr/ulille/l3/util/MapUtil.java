@@ -17,7 +17,6 @@ public class MapUtil {
 			
 			@Override
 			public int compare(Entry<K,V>e1, Entry<K,V>e2) {
-				System.out.println(e2.getValue().compareTo(e1.getValue()));
 				return e2.getValue().compareTo(e1.getValue());
 			}
 		});
