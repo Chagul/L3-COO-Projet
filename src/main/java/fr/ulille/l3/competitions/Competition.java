@@ -16,16 +16,10 @@ public abstract class Competition {
 	}
 
 	public void play() {
-
+		this.play(competitors);
 	}
 
-	protected void play(List<Competitor> competitors) {
-		for(int indexCompetitor1 = 0; indexCompetitor1 < competitors.size(); indexCompetitor1++) 
-			for(int indexCompetitor2 = 1+indexCompetitor1; indexCompetitor2 < competitors.size(); indexCompetitor2++) {
-				playMatch(competitors.get(indexCompetitor1),competitors.get(indexCompetitor2));
-			}
-
-	}
+	protected abstract void play(List<Competitor> competitors);
 
 	protected void playMatch(Competitor c1, Competitor c2) {
 		Competitor winner = new BasicMatch(c1,c2).play();

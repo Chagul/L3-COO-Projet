@@ -1,6 +1,7 @@
 package test.java.fr.ulille.l3.competitions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,8 +52,9 @@ class TestLeaderboard {
 	@Test
 	void testInitWithEmptyCompetitorList() throws NullPointerException, EmptyCompetitorsListException {
 		List<Competitor> emptyList = new ArrayList<Competitor>();
-		leaderboard = new Leaderboard(emptyList);
-		assertEquals(true, leaderboard.getRanking().isEmpty());
+		assertThrows(EmptyCompetitorsListException.class, () -> {
+			leaderboard = new Leaderboard(emptyList);
+		});
 	}
 	
 	@Test

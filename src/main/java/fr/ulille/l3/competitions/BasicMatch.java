@@ -13,10 +13,6 @@ public class BasicMatch extends Match {
 		Random rng = new Random();
 		int randomWinner = rng.nextInt(2);
 		return randomWinner == 0 ? this.firstCompetitor : this.secondCompetitor;
-		
 	}
 
-
-
-	
 }
