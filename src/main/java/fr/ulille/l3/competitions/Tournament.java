@@ -46,7 +46,7 @@ public class Tournament extends Competition {
 
 				if(tmpList.size() != 2) {
 					tmpList.add(c1);
-					tmpList.remove(1);
+					tmpList.remove(0);
 				}
 			}else {
 				tmpList.remove(c1);
