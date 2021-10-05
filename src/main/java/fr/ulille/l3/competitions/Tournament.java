@@ -36,25 +36,28 @@ public class Tournament extends Competition {
 	 */
 	@Override
 	protected void play(List<Competitor> competitors) {
-		List<Competitor> tmpList = new ArrayList<Competitor>(competitors);
-		while(tmpList.size() > 1) {
-			Competitor c1 = tmpList.get(0);
-			Competitor c2 = tmpList.get(1);
+		List<Competitor> remainingCompetitors = new ArrayList<Competitor>(competitors);
+		while(remainingCompetitors.size() > 1) {
+			Competitor c1 = remainingCompetitors.get(0);
+			Competitor c2 = remainingCompetitors.get(1);
 			Competitor winner = playMatch(c1,c2);
-			if(winner.equals(c1)){
-				tmpList.remove(c2);
+			removeLooserFromCompetitors(remainingCompetitors, c1, c2, winner);
+		}
+	}
 
-				if(tmpList.size() != 2) {
-					tmpList.add(c1);
-					tmpList.remove(0);
-				}
-			}else {
-				tmpList.remove(c1);
-
-				if(tmpList.size() != 2) {
-					tmpList.add(c2);
-					tmpList.remove(0);
-				}
+	private void removeLooserFromCompetitors(List<Competitor> remainingCompetitors, Competitor c1, Competitor c2, Competitor winner) {
+		if(winner.equals(c1)) {
+			remainingCompetitors.remove(c2);
+			if(remainingCompetitors.size() != 2) {
+				remainingCompetitors.add(c1);
+				remainingCompetitors.remove(0);
+			}
+		} 
+		else {
+			remainingCompetitors.remove(c1);
+			if(remainingCompetitors.size() != 2) {
+				remainingCompetitors.add(c2);
+				remainingCompetitors.remove(0);
 			}
 		}
 	}
