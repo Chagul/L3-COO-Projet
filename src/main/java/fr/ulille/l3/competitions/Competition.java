@@ -6,13 +6,15 @@ import main.java.fr.ulille.l3.excpetions.EmptyCompetitorsListException;
 import main.java.fr.ulille.l3.match.BasicMatch;
 import main.java.fr.ulille.l3.modele.Competitor;
 import main.java.fr.ulille.l3.modele.Leaderboard;
+import main.java.fr.ulille.l3.util.Displayer;
 
 public abstract class Competition {
 	
+	public static final Displayer DISPLAYER = new Displayer();
 	private final List<Competitor> competitors;
 	protected Leaderboard leaderboard;
 	protected int matchesPlayed;
-
+	
 
 	public Competition(List<Competitor> competitors) throws NullPointerException, EmptyCompetitorsListException {
 		this.competitors = competitors;
@@ -36,7 +38,7 @@ public abstract class Competition {
 		Competitor winner = new BasicMatch(c1,c2).play();
 		incrementScoreOfWinnner(winner);
 		incrementMatchesPlayed();
-		System.out.println(c1.getName() + "vs" + c2.getName() + "--> Winner : " + winner.getName());
+		DISPLAYER.display(c1.getName() + " vs " + c2.getName() + " --> Winner : " + winner.getName());
 		return winner;
 	}
 	

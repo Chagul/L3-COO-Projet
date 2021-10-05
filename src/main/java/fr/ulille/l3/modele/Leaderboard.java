@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import main.java.fr.ulille.l3.competitions.Competition;
 import main.java.fr.ulille.l3.excpetions.EmptyCompetitorsListException;
 import main.java.fr.ulille.l3.util.MapUtil;
 
@@ -42,9 +43,9 @@ public class Leaderboard {
 	 */
 	public void showRanking() {
 		ranking = MapUtil.sortByDescendingValue(ranking);
-		System.out.println("*** RANKING ***");
+		Competition.DISPLAYER.display("\n*** RANKING ***");
 		for (Map.Entry<Competitor,Integer> entryMap : ranking.entrySet()) {
-			System.out.println(entryMap.getKey().getName() + "-->" + entryMap.getValue());
+			Competition.DISPLAYER.display(entryMap.getKey().getName() + " --> " + entryMap.getValue());
 		}
 	}
 
