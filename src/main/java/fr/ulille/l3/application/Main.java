@@ -5,7 +5,7 @@ import java.util.List;
 
 import main.java.fr.ulille.l3.competitions.Competition;
 import main.java.fr.ulille.l3.competitions.Tournament;
-import main.java.fr.ulille.l3.excpetions.CompetitorsNumberNotPowerOf2;
+import main.java.fr.ulille.l3.excpetions.CompetitorsNumberNotPowerOf2Exception;
 import main.java.fr.ulille.l3.excpetions.EmptyCompetitorsListException;
 import main.java.fr.ulille.l3.modele.Competitor;
 
@@ -27,7 +27,7 @@ public class Main {
 			e.printStackTrace();
 		} catch (EmptyCompetitorsListException e) {
 			e.printStackTrace();
-		} catch (CompetitorsNumberNotPowerOf2 e) {
+		} catch (CompetitorsNumberNotPowerOf2Exception e) {
 			e.printStackTrace();
 		}
 		

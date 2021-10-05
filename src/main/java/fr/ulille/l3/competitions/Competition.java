@@ -34,10 +34,18 @@ public abstract class Competition {
 	 */
 	protected Competitor playMatch(Competitor c1, Competitor c2) {
 		Competitor winner = new BasicMatch(c1,c2).play();
-		leaderboard.incrScore(winner);
-		this.matchesPlayed++;
+		incrementScoreOfWinnner(winner);
+		incrementMatchesPlayed();
 		System.out.println(c1.getName() + "vs" + c2.getName() + "--> Winner : " + winner.getName());
 		return winner;
+	}
+	
+	protected void incrementMatchesPlayed() {
+		this.matchesPlayed++;
+	}
+	
+	protected void incrementScoreOfWinnner(Competitor winner) {
+		this.leaderboard.incrScore(winner);
 	}
 
 	public int getMatchesPlayed() {

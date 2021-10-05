@@ -3,13 +3,13 @@ package main.java.fr.ulille.l3.competitions;
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.fr.ulille.l3.excpetions.CompetitorsNumberNotPowerOf2;
+import main.java.fr.ulille.l3.excpetions.CompetitorsNumberNotPowerOf2Exception;
 import main.java.fr.ulille.l3.excpetions.EmptyCompetitorsListException;
 import main.java.fr.ulille.l3.modele.Competitor;
 
 public class Tournament extends Competition {
 
-	public Tournament(List<Competitor> competitors) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2 {
+	public Tournament(List<Competitor> competitors) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception {
 		super(competitors);
 		checkModulo2(competitors);
 	}
@@ -19,11 +19,11 @@ public class Tournament extends Competition {
 	 * @param competitors The list of competitors to be checked
 	 * @throws CompetitorsNumberNotPowerOf2 Exception if modulo 2 is not respected
 	 */
-	private void checkModulo2(List<Competitor> competitors) throws CompetitorsNumberNotPowerOf2 {
+	private void checkModulo2(List<Competitor> competitors) throws CompetitorsNumberNotPowerOf2Exception {
 		int checkIfPowerOfTwo = competitors.size();
 		while(checkIfPowerOfTwo > 1) {
 			if(checkIfPowerOfTwo%2 != 0){
-				throw new CompetitorsNumberNotPowerOf2();
+				throw new CompetitorsNumberNotPowerOf2Exception();
 			}
 			checkIfPowerOfTwo = checkIfPowerOfTwo/2;
 		}

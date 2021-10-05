@@ -2,10 +2,13 @@ package test.java.fr.ulille.l3.competitions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import main.java.fr.ulille.l3.competitions.Competition;
 import main.java.fr.ulille.l3.competitions.League;
+import main.java.fr.ulille.l3.modele.Competitor;
 
 public class TestLeague extends TestCompetition {
 
@@ -24,7 +27,15 @@ public class TestLeague extends TestCompetition {
 	public void testRightCountOfMatches() {
 		this.competition.play();
 		int matchesPlayed = this.competition.getMatchesPlayed();
-		int expectedNumberOfMatches = this.competitors.size()*4;
+		int expectedNumberOfMatches = howManyMatchesExpected(competitors);
 		assertEquals(expectedNumberOfMatches, matchesPlayed);
+	}
+	
+	private int howManyMatchesExpected(List<Competitor> competitors) {
+		int expectedMatches = 0;
+		for(int i = 0; i < competitors.size(); i++) {
+			expectedMatches += (competitors.size()-1)-i;
+		}
+		return expectedMatches*2;
 	}
 }

@@ -24,6 +24,7 @@ public abstract class TestCompetition {
 	protected Competitor c3;
 	protected Competitor c4;
 	protected Competitor c5;
+	protected Competitor c6;
 
 	@BeforeEach
 	public void init() {
@@ -61,4 +62,5 @@ public abstract class TestCompetition {
 			new Tournament(new ArrayList<Competitor>());
 		});
 	}
+	
 }
