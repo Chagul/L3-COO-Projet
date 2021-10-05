@@ -11,11 +11,13 @@ public abstract class Competition {
 	
 	private final List<Competitor> competitors;
 	protected Leaderboard leaderboard;
+	protected int matchesPlayed;
 
 
 	public Competition(List<Competitor> competitors) throws NullPointerException, EmptyCompetitorsListException {
 		this.competitors = competitors;
 		this.leaderboard = new Leaderboard(competitors);
+		this.matchesPlayed = 0;
 	}
 
 	public void play() {
@@ -33,8 +35,13 @@ public abstract class Competition {
 	protected Competitor playMatch(Competitor c1, Competitor c2) {
 		Competitor winner = new BasicMatch(c1,c2).play();
 		leaderboard.incrScore(winner);
+		this.matchesPlayed++;
 		System.out.println(c1.getName() + "vs" + c2.getName() + "--> Winner : " + winner.getName());
 		return winner;
+	}
+
+	public int getMatchesPlayed() {
+		return matchesPlayed;
 	}
 
 	public void ranking() {
