@@ -13,8 +13,16 @@ import main.java.fr.ulille.l3.competitions.Tournament;
 import main.java.fr.ulille.l3.excpetions.CompetitorsNumberNotPowerOf2Exception;
 import main.java.fr.ulille.l3.modele.Competitor;
 
+/**
+ * Tests that concern a Tournament specifically 
+ * @author Aurélien,Lucas
+ *
+ */
 public class TestTournament extends TestCompetition {
 
+	/**
+	 * Create a Tournament with 4 competitors
+	 */
 	@Override
 	protected Competition createCompetition() throws Exception {
 		this.competitors.add(c1);
@@ -25,6 +33,9 @@ public class TestTournament extends TestCompetition {
 		return new Tournament(this.competitors);
 	}
 	
+	/**
+	 * Test if the CompetitorsNumberNotPowerOf2Exception is raised at the creation of a tournament when there is a not modulo 2 number of competitor in the list
+	 */
 	@Test
 	public void testCompetitorsNotPowerOf2Exception() {
 		List<Competitor> competitorsNotPowerOf2 = new ArrayList<>();
@@ -36,6 +47,9 @@ public class TestTournament extends TestCompetition {
 		});
 	}
 	
+	/**
+	 * Test if the matches played at the end of the tournament is equals to the one expected
+	 */
 	@Test
 	public void testRightCountOfMatch() {
 		this.competition.play();
@@ -44,6 +58,11 @@ public class TestTournament extends TestCompetition {
 		assertEquals(expectedNumberOfMatches, matchesPlayed);
 	}
 	
+	/**
+	 * Calculate how many matches should be played in the tournament
+	 * @param competitors The list of competitors at the beginning of the tournament
+	 * @return The number of matches expected with the given list
+	 */
 	private int howManyMatchesExpected(List<Competitor> competitors) {
 		return competitors.size()-1;
 	}

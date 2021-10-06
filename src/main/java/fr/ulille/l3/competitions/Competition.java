@@ -8,6 +8,11 @@ import main.java.fr.ulille.l3.modele.Competitor;
 import main.java.fr.ulille.l3.modele.Leaderboard;
 import main.java.fr.ulille.l3.util.Displayer;
 
+/**
+ * Abstract class that assemble all the commons behavior between all the competition
+ * @author Aurélien,Lucas
+ *
+ */
 public abstract class Competition {
 	
 	public static final Displayer DISPLAYER = new Displayer();
@@ -50,10 +55,17 @@ public abstract class Competition {
 		this.leaderboard.incrScore(winner);
 	}
 
+	/**
+	 * 
+	 * @return The number of matches played so far
+	 */
 	public int getMatchesPlayed() {
 		return matchesPlayed;
 	}
 
+	/**
+	 * Display the leaderboard with all the results
+	 */
 	public void ranking() {
 		leaderboard.showRanking();
 	}

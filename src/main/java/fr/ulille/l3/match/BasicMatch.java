@@ -3,7 +3,11 @@ package main.java.fr.ulille.l3.match;
 import java.util.Random;
 
 import main.java.fr.ulille.l3.modele.Competitor;
-
+/**
+ * A basic match is defined with the winner chosen randomly.
+ * @author Aurélien, Lucas
+ *
+ */
 public class BasicMatch extends Match {
 
 	public BasicMatch(Competitor c1, Competitor c2) {

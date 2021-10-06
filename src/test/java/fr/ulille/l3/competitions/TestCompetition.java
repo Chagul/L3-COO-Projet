@@ -15,6 +15,11 @@ import main.java.fr.ulille.l3.competitions.Tournament;
 import main.java.fr.ulille.l3.excpetions.EmptyCompetitorsListException;
 import main.java.fr.ulille.l3.modele.Competitor;
 
+/**
+ * Abstract class that assemble all the commons behviour between the tests of Competition type classes
+ * @author Aurélien,Lucas
+ *
+ */
 public abstract class TestCompetition {
 
 	protected List<Competitor> competitors = new ArrayList<Competitor>();
@@ -26,6 +31,9 @@ public abstract class TestCompetition {
 	protected Competitor c5;
 	protected Competitor c6;
 
+	/**
+	 * Init a competition with 5 competitors
+	 */
 	@BeforeEach
 	public void init() {
 		c1 = new Competitor("Aurélien");
@@ -43,6 +51,9 @@ public abstract class TestCompetition {
 
 	protected abstract Competition createCompetition() throws Exception;
 
+	/**
+	 * Test if the null pointer exception is raised when a null list is used to create a Competition type.
+	 */
 	@Test
 	public void testNullPointerException() {
 		assertThrows(NullPointerException.class, () -> {
@@ -53,6 +64,9 @@ public abstract class TestCompetition {
 		});
 	}
 
+	/**
+	 * Test if the empty list exception is raised when an empty list is used to create a Competition type.
+	 */
 	@Test
 	public void testEmptyListOfCompetitors() {
 		assertThrows(EmptyCompetitorsListException.class, () -> {

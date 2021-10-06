@@ -14,7 +14,12 @@ import main.java.fr.ulille.l3.excpetions.EmptyCompetitorsListException;
 import main.java.fr.ulille.l3.modele.Competitor;
 import main.java.fr.ulille.l3.modele.Leaderboard;
 
-class TestLeaderboard {
+/**
+ * Tests that concern the leaderboard specifically 
+ * @author Aurélien, Lucas
+ *
+ */
+public class TestLeaderboard {
 	
 	private Leaderboard leaderboard;
 	private Competitor c1, c2, c3;

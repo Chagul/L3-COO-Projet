@@ -5,6 +5,11 @@ import java.util.List;
 import main.java.fr.ulille.l3.excpetions.EmptyCompetitorsListException;
 import main.java.fr.ulille.l3.modele.Competitor;
 
+/**
+ * League is a type of competition with the rule that every competitor must play against others competitors at least twice
+ * @author Aurélien, Lucas
+ *
+ */
 public class League extends Competition {
 
 	public League(List<Competitor> competitors) throws NullPointerException, EmptyCompetitorsListException {

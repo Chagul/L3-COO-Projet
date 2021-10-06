@@ -8,8 +8,13 @@ import main.java.fr.ulille.l3.competitions.Competition;
 import main.java.fr.ulille.l3.excpetions.EmptyCompetitorsListException;
 import main.java.fr.ulille.l3.util.MapUtil;
 
+/**
+ * Centralize all the informations about the ranking, competitors, their wins and their score.
+ * @author Aurélien, Lucas
+ *
+ */
 public class Leaderboard {
-
+	
 	private Map<Competitor,Integer> ranking;  
 
 	/**

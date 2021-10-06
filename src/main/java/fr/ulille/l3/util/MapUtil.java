@@ -8,8 +8,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+/**
+ * Collections of methods that interact and change a map.
+ * @author Aurélien,Lucas
+ *
+ */
 public class MapUtil {
 	
+	/**
+	 * Sort a map by descending value by comparing every value with the next one.
+	 * @param <K> Key of the map entry
+	 * @param <V> Value of the map entry
+	 * @param map Map that will be sorted
+	 * @return The sorted map
+	 */
 	public static <K,V extends Comparable<? super V>>Map<K,V> sortByDescendingValue(Map<K,V>map) {
 		
 		List<Entry<K,V>>sortedEntries = new ArrayList<Entry<K,V>>(map. entrySet ());

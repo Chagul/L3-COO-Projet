@@ -7,6 +7,11 @@ import main.java.fr.ulille.l3.excpetions.CompetitorsNumberNotPowerOf2Exception;
 import main.java.fr.ulille.l3.excpetions.EmptyCompetitorsListException;
 import main.java.fr.ulille.l3.modele.Competitor;
 
+/**
+ * Tournament is a type of competition that need modulo 2 of competitor, each match has one loser and one winner, the loser will not compete in the next round.
+ * @author Aurélien, Lucas
+ *
+ */
 public class Tournament extends Competition {
 
 	public Tournament(List<Competitor> competitors) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception {
@@ -45,6 +50,13 @@ public class Tournament extends Competition {
 		}
 	}
 
+	/**
+	 * Allow to remove the loser of the match from the list, the winner goes to next round and is put at the end of the list.
+	 * @param remainingCompetitors The list with all the competitors still in the league
+	 * @param c1 First competitor that played a match against c2
+	 * @param c2 Second competitor that played a match against c1
+	 * @param winner The winner between c1 and c2
+	 */
 	private void removeLooserFromCompetitors(List<Competitor> remainingCompetitors, Competitor c1, Competitor c2, Competitor winner) {
 		if(winner.equals(c1)) {
 			remainingCompetitors.remove(c2);
