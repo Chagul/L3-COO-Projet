@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import main.java.fr.ulille.l3.competitions.Competition;
 import main.java.fr.ulille.l3.competitions.Tournament;
-import main.java.fr.ulille.l3.excpetions.CompetitorsNumberNotPowerOf2Exception;
+import main.java.fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
 import main.java.fr.ulille.l3.modele.Competitor;
 
 /**

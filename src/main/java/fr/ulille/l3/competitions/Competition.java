@@ -2,7 +2,7 @@ package main.java.fr.ulille.l3.competitions;
 
 import java.util.List;
 
-import main.java.fr.ulille.l3.excpetions.EmptyCompetitorsListException;
+import main.java.fr.ulille.l3.exceptions.EmptyCompetitorsListException;
 import main.java.fr.ulille.l3.match.BasicMatch;
 import main.java.fr.ulille.l3.modele.Competitor;
 import main.java.fr.ulille.l3.modele.Leaderboard;
@@ -15,7 +15,6 @@ import main.java.fr.ulille.l3.util.Displayer;
  */
 public abstract class Competition {
 	
-	public static final Displayer DISPLAYER = new Displayer();
 	private final List<Competitor> competitors;
 	protected Leaderboard leaderboard;
 	protected int matchesPlayed;
@@ -43,7 +42,7 @@ public abstract class Competition {
 		Competitor winner = new BasicMatch(c1,c2).play();
 		incrementScoreOfWinnner(winner);
 		incrementMatchesPlayed();
-		DISPLAYER.display(c1.getName() + " vs " + c2.getName() + " --> Winner : " + winner.getName());
+		Displayer.getInstance().display(c1.getName() + " vs " + c2.getName() + " --> Winner : " + winner.getName());
 		return winner;
 	}
 	

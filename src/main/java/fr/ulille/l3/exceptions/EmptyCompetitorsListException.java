@@ -1,4 +1,4 @@
-package main.java.fr.ulille.l3.excpetions;
+package main.java.fr.ulille.l3.exceptions;
 
 public class EmptyCompetitorsListException extends Exception {
 

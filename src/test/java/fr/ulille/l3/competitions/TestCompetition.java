@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 import main.java.fr.ulille.l3.competitions.Competition;
 import main.java.fr.ulille.l3.competitions.League;
 import main.java.fr.ulille.l3.competitions.Tournament;
-import main.java.fr.ulille.l3.excpetions.EmptyCompetitorsListException;
+import main.java.fr.ulille.l3.exceptions.EmptyCompetitorsListException;
 import main.java.fr.ulille.l3.modele.Competitor;
 
 /**

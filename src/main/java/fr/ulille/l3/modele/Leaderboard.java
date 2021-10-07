@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import main.java.fr.ulille.l3.competitions.Competition;
-import main.java.fr.ulille.l3.excpetions.EmptyCompetitorsListException;
+import main.java.fr.ulille.l3.exceptions.EmptyCompetitorsListException;
+import main.java.fr.ulille.l3.util.Displayer;
 import main.java.fr.ulille.l3.util.MapUtil;
 
 /**
@@ -47,10 +47,11 @@ public class Leaderboard {
 	 * Print the result of the competition, by descending value. Ranking will be sorted here.
 	 */
 	public void showRanking() {
+		Displayer displayer = Displayer.getInstance();
 		ranking = MapUtil.sortByDescendingValue(ranking);
-		Competition.DISPLAYER.display("\n*** RANKING ***");
+		displayer.display("\n*** RANKING ***");
 		for (Map.Entry<Competitor,Integer> entryMap : ranking.entrySet()) {
-			Competition.DISPLAYER.display(entryMap.getKey().getName() + " --> " + entryMap.getValue());
+			displayer.display(entryMap.getKey().getName() + " --> " + entryMap.getValue());
 		}
 	}
 

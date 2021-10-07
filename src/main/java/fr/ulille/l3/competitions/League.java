@@ -2,7 +2,7 @@ package main.java.fr.ulille.l3.competitions;
 
 import java.util.List;
 
-import main.java.fr.ulille.l3.excpetions.EmptyCompetitorsListException;
+import main.java.fr.ulille.l3.exceptions.EmptyCompetitorsListException;
 import main.java.fr.ulille.l3.modele.Competitor;
 
 /**
