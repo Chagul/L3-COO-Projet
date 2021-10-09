@@ -12,9 +12,11 @@ public class CompetitionFactory {
 	public Competition createCompetition(String typeCompetition, List<Competitor> listOfCompetitors) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception, NoSuchTypeOfCompetitionException {
 		if(typeCompetition.equals("League")){
 			return new League(listOfCompetitors);
-		}else if(typeCompetition.equals("Tournament")) {
+		}
+		else if(typeCompetition.equals("Tournament")) {
 			return new Tournament(listOfCompetitors);
 		}
+		
 		throw new NoSuchTypeOfCompetitionException("There is no competition with that name");
 	}
 

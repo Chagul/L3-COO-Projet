@@ -3,7 +3,9 @@ package main.java.fr.ulille.l3.competitions;
 import java.util.List;
 
 import main.java.fr.ulille.l3.exceptions.EmptyCompetitorsListException;
-import main.java.fr.ulille.l3.match.BasicMatch;
+import main.java.fr.ulille.l3.exceptions.NoSuchTypeOfMatchException;
+import main.java.fr.ulille.l3.match.Match;
+import main.java.fr.ulille.l3.match.MatchFactory;
 import main.java.fr.ulille.l3.modele.Competitor;
 import main.java.fr.ulille.l3.modele.Leaderboard;
 import main.java.fr.ulille.l3.util.Displayer;
@@ -18,12 +20,14 @@ public abstract class Competition {
 	private final List<Competitor> competitors;
 	protected Leaderboard leaderboard;
 	protected int matchesPlayed;
+	private MatchFactory matchFactory;
 	
 
 	public Competition(List<Competitor> competitors) throws NullPointerException, EmptyCompetitorsListException {
 		this.competitors = competitors;
 		this.leaderboard = new Leaderboard(competitors);
 		this.matchesPlayed = 0;
+		this.matchFactory = new MatchFactory();
 	}
 
 	public void play() {
@@ -39,11 +43,23 @@ public abstract class Competition {
 	 * @return The winner of the match
 	 */
 	protected Competitor playMatch(Competitor c1, Competitor c2) {
-		Competitor winner = new BasicMatch(c1,c2).play();
+		Match matchToPlay = createMatch(c1, c2);
+		Competitor winner = matchToPlay.play();
 		incrementScoreOfWinnner(winner);
 		incrementMatchesPlayed();
 		Displayer.getInstance().display(c1.getName() + " vs " + c2.getName() + " --> Winner : " + winner.getName());
 		return winner;
+	}
+
+	private Match createMatch(Competitor c1, Competitor c2) {
+		Match matchToPlay = null;
+		try {
+			matchToPlay = this.matchFactory.createMatch("BasicMatch", c1,c2);
+		} catch (NoSuchTypeOfMatchException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		return matchToPlay;
 	}
 	
 	protected void incrementMatchesPlayed() {

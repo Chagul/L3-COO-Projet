@@ -1,4 +1,4 @@
-package test.java.fr.ulille.l3.competitions;
+package fr.ulille.l3.match;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -11,7 +11,6 @@ import main.java.fr.ulille.l3.modele.Competitor;
 /**
  * Tests of the BasicMatch class 
  * @author Aurélien,Lucas
- *
  */
 public class TestBasicMatch extends TestMatch{
 	
@@ -25,6 +24,6 @@ public class TestBasicMatch extends TestMatch{
 
 	@Override
 	protected Match createMatch() throws Exception {
-		return new BasicMatch(c1,c2);
+		return new BasicMatch(this.c1, this.c2);
 	}
 }

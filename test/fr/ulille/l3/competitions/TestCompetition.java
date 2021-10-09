@@ -1,4 +1,4 @@
-package test.java.fr.ulille.l3.competitions;
+package fr.ulille.l3.competitions;
 
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertThrows;

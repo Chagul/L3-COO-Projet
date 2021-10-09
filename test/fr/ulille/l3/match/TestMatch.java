@@ -1,4 +1,4 @@
-package test.java.fr.ulille.l3.competitions;
+package fr.ulille.l3.match;
 
 import static org.junit.Assert.fail;
 
@@ -26,7 +26,7 @@ public abstract class TestMatch {
 		c1 = new Competitor("Lucas");
 		c2 = new Competitor("Aurélien");
 		try {
-			this.createMatch();
+			match1 = this.createMatch();
 		} catch (Exception e) {
 			fail();
 		}
