@@ -1,13 +1,14 @@
 package main.java.fr.ulille.l3.exceptions;
 
+/**
+ * Exception expressing the fact that a competition is created with an empty list of competitors.
+ * @author Aurélien, Lucas
+ */
 public class EmptyCompetitorsListException extends Exception {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1533203553742898058L;
 
 	public EmptyCompetitorsListException() {
-		super("La liste est vide");
+		super("The list of competitors is empty.");
 	}
 }

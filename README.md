@@ -44,15 +44,19 @@ Pour compiler les tests et les lancer :
 ```
 
 ## Génération de la documentation
-
+En partant de la racine du projet : 
 ```shell
+cd src
+javadoc -d ../doc -subpackages main  
 ```
 
 La documentation sera généré à l'emplacement suivant :
 ```shell
+cd ../doc
 ```
  vous pouvez y acceder avec la commande
 ```shell
+firefox index.html
 ```
 
 # Diagramme UML

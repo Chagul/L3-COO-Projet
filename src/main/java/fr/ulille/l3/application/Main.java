@@ -12,6 +12,12 @@ import main.java.fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import main.java.fr.ulille.l3.modele.Competitor;
 import main.java.fr.ulille.l3.util.Displayer;
 
+/**
+ * Main class that runs the project. Asks for competitors and a type of competition before playing it.
+ * @author Auréilen, Lucas
+ *
+ */
+
 public class Main {
 
 	public static void main(String[] args) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception, NoSuchTypeOfCompetitionException {
