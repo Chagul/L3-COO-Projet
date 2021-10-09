@@ -1,4 +1,4 @@
-package fr.ulille.modele;
+package fr.ulille.l3.modele;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
