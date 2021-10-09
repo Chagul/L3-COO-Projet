@@ -30,7 +30,7 @@ git clone https://gitlab-etu.fil.univ-lille1.fr/ple/ple_lucas_plancke_aurelien-c
 Pour compiler le projet et générer le jar du projet : 
 ```shell 
 ./compile.sh
-jar -cf ProjetCOO.jar 
+cd bin && jar cvfm ../ProjetCOO.jar ../MANIFEST.MF main/java/fr/ulille/l3 && cd ..
 ```
 
 ## Lancement du projet
@@ -53,11 +53,12 @@ En partant de la racine du projet :
 ```shell
 cd src
 javadoc -d ../doc -subpackages main  
+cd ..
 ```
 
 La documentation sera généré à l'emplacement suivant :
 ```shell
-cd ../doc
+cd doc
 ```
  vous pouvez y acceder avec la commande
 ```shell
