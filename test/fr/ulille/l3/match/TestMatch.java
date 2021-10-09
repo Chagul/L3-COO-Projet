@@ -1,6 +1,7 @@
 package fr.ulille.l3.match;
 
-import static org.junit.Assert.fail;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeEach;
 
@@ -28,7 +29,7 @@ public abstract class TestMatch {
 		try {
 			match1 = this.createMatch();
 		} catch (Exception e) {
-			fail();
+			fail("Exception catched");
 		}
 	}
 

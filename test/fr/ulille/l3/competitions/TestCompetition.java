@@ -1,7 +1,8 @@
 package fr.ulille.l3.competitions;
 
-import static org.junit.Assert.fail;
+
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public abstract class TestCompetition {
 			this.competition = this.createCompetition();
 		}
 		catch (Exception e) {
-			fail();
+			fail("Catched exception");
 		}
 	}
 

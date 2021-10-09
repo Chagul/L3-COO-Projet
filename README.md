@@ -29,18 +29,23 @@ git clone https://gitlab-etu.fil.univ-lille1.fr/ple/ple_lucas_plancke_aurelien-c
 ## Compilation en jar du projet
 Pour compiler le projet et générer le jar du projet : 
 ```shell 
+./compile.sh
+jar -cf ProjetCOO.jar 
 ```
 
 ## Lancement du projet
 Pour lancer le projet : 
 ```shell 
+java -jar ProjetCOO.jar
 ```
 
 ## Compilation et lancement des tests
-Pour compiler les tests et les lancer : 
+Pour compiler les tests et les lancer en partant de la racine du projet: 
 ```shell 
+./compile.sh
 ```
 ```shell
+java -jar lib/Junit-console.jar --class-path bin/ --scan-class-path
 ```
 
 ## Génération de la documentation
