@@ -65,9 +65,25 @@ cd doc
 firefox index.html
 ```
 
-# Diagramme UML
+# Diagrammes UML
 
-<png></png>
+![umlCompetition](./Screenshots/umlCompetition.png "UML des competitions")
+
+
+![umlMatch](./Screenshots/umlMatch.png "UML des matchs")
+
+
+![umlModel](./Screenshots/umlModele.png "UML du modèle")
+
+
+![umlException](./Screenshots/umlException.png "UML des exceptions")
+
+
+![umlMapUtil](./Screenshots/umlMapUtil.png "UML de MapUtil")
+
+
+![umlDisplayer](./Screenshots/umlDisplayer.png "UML de la Displayer")
+
 
 
 # Principes et éléments de conceptions important utilisé.
