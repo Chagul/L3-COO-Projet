@@ -1,4 +1,4 @@
-package main.java.fr.ulille.l3.competitions;
+	package main.java.fr.ulille.l3.competitions;
 
 import java.util.List;
 

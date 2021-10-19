@@ -84,4 +84,8 @@ public abstract class Competition {
 	public void ranking() {
 		leaderboard.showRanking();
 	}
+	
+	protected Leaderboard getLeaderboard() {
+		return this.leaderboard;
+	}
 }
