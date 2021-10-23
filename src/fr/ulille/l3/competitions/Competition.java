@@ -1,14 +1,15 @@
-package main.java.fr.ulille.l3.competitions;
+package fr.ulille.l3.competitions;
 
 import java.util.List;
+import java.util.Map;
 
-import main.java.fr.ulille.l3.exceptions.EmptyCompetitorsListException;
-import main.java.fr.ulille.l3.exceptions.NoSuchTypeOfMatchException;
-import main.java.fr.ulille.l3.match.Match;
-import main.java.fr.ulille.l3.match.MatchFactory;
-import main.java.fr.ulille.l3.modele.Competitor;
-import main.java.fr.ulille.l3.modele.Leaderboard;
-import main.java.fr.ulille.l3.util.Displayer;
+import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
+import fr.ulille.l3.exceptions.NoSuchTypeOfMatchException;
+import fr.ulille.l3.match.Match;
+import fr.ulille.l3.match.MatchFactory;
+import fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.modele.Leaderboard;
+import fr.ulille.l3.util.Displayer;
 
 /**
  * Abstract class that assemble all the commons behavior between all the competition
@@ -81,8 +82,8 @@ public abstract class Competition {
 	/**
 	 * Display the leaderboard with all the results
 	 */
-	public void ranking() {
-		leaderboard.showRanking();
+	public Map<Competitor,Integer> ranking() {
+		return leaderboard.showRanking();
 	}
 	
 	protected Leaderboard getLeaderboard() {

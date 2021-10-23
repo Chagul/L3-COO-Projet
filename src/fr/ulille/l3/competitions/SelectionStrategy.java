@@ -1,8 +1,8 @@
-package main.java.fr.ulille.l3.competitions;
+package fr.ulille.l3.competitions;
 
 import java.util.List;
 
-import main.java.fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.modele.Competitor;
 
 interface SelectionStrategy {
 

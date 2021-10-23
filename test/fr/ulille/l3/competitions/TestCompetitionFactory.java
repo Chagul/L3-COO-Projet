@@ -9,14 +9,10 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.java.fr.ulille.l3.competitions.Competition;
-import main.java.fr.ulille.l3.competitions.CompetitionFactory;
-import main.java.fr.ulille.l3.competitions.League;
-import main.java.fr.ulille.l3.competitions.Tournament;
-import main.java.fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
-import main.java.fr.ulille.l3.exceptions.EmptyCompetitorsListException;
-import main.java.fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
-import main.java.fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
+import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
+import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
+import fr.ulille.l3.modele.Competitor;
 
 class TestCompetitionFactory {
 

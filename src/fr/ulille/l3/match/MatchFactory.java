@@ -1,7 +1,7 @@
-package main.java.fr.ulille.l3.match;
+package fr.ulille.l3.match;
 
-import main.java.fr.ulille.l3.exceptions.NoSuchTypeOfMatchException;
-import main.java.fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.exceptions.NoSuchTypeOfMatchException;
+import fr.ulille.l3.modele.Competitor;
 
 /**
  * Class implementing the factory method pattern. Use it to create any type of match.

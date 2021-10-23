@@ -1,12 +1,12 @@
-package main.java.fr.ulille.l3.competitions;
+package fr.ulille.l3.competitions;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import main.java.fr.ulille.l3.modele.Competitor;
-import main.java.fr.ulille.l3.util.MapUtil;
+import fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.util.MapUtil;
 
 public class SelectionStrategyBasicMaster implements SelectionStrategy{
 

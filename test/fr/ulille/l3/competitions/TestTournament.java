@@ -8,10 +8,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import main.java.fr.ulille.l3.competitions.Competition;
-import main.java.fr.ulille.l3.competitions.Tournament;
-import main.java.fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
-import main.java.fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
+import fr.ulille.l3.modele.Competitor;
 
 /**
  * Tests that concern a Tournament specifically 

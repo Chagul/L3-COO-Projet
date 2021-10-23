@@ -1,11 +1,11 @@
-package main.java.fr.ulille.l3.competitions;
+package fr.ulille.l3.competitions;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import main.java.fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
-import main.java.fr.ulille.l3.exceptions.EmptyCompetitorsListException;
-import main.java.fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
+import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
+import fr.ulille.l3.modele.Competitor;
 
 /**
  * Tournament is a type of competition that need modulo 2 of competitor, each match has one loser and one winner, the loser will not compete in the next round.

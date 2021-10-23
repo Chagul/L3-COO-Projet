@@ -1,16 +1,18 @@
-package main.java.fr.ulille.l3.application;
+package fr.ulille.l3.application;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
-import main.java.fr.ulille.l3.competitions.Competition;
-import main.java.fr.ulille.l3.competitions.CompetitionFactory;
-import main.java.fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
-import main.java.fr.ulille.l3.exceptions.EmptyCompetitorsListException;
-import main.java.fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
-import main.java.fr.ulille.l3.modele.Competitor;
-import main.java.fr.ulille.l3.util.Displayer;
+import fr.ulille.l3.competitions.Competition;
+import fr.ulille.l3.competitions.CompetitionFactory;
+import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
+import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
+import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
+import fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.util.Displayer;
+import fr.ulille.l3.util.MapUtil;
 
 /**
  * Main class that runs the project. Asks for competitors and a type of competition before playing it.
@@ -49,6 +51,11 @@ public class Main {
 		sc.close();
 
 		competition.play();
-		competition.ranking();
+		Map<Competitor,Integer> ranks = competition.ranking();
+		ranks = MapUtil.sortByDescendingValue(ranks);
+		displayer.display("\n*** RANKING ***");
+		for (Map.Entry<Competitor,Integer> entryMap : ranks.entrySet()) {
+			displayer.display(entryMap.getKey().getName() + " --> " + entryMap.getValue());
+		}
 	}
 }

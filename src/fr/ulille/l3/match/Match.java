@@ -1,6 +1,6 @@
-package main.java.fr.ulille.l3.match;
+package fr.ulille.l3.match;
 
-import main.java.fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.modele.Competitor;
 
 /** Abstract class that assemble all the commons behavior between all the type of matches
  * @author Aurélien, Lucas

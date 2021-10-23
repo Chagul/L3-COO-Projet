@@ -1,12 +1,12 @@
-package main.java.fr.ulille.l3.modele;
+package fr.ulille.l3.modele;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import main.java.fr.ulille.l3.exceptions.EmptyCompetitorsListException;
-import main.java.fr.ulille.l3.util.Displayer;
-import main.java.fr.ulille.l3.util.MapUtil;
+import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
+import fr.ulille.l3.util.Displayer;
+import fr.ulille.l3.util.MapUtil;
 
 /**
  * Centralize all the informations about the ranking, competitors, their wins and their score.
@@ -45,14 +45,10 @@ public class Leaderboard {
 
 	/**
 	 * Print the result of the competition, by descending value. Ranking will be sorted here.
+	 * @return 
 	 */
-	public void showRanking() {
-		Displayer displayer = Displayer.getInstance();
-		ranking = MapUtil.sortByDescendingValue(ranking);
-		displayer.display("\n*** RANKING ***");
-		for (Map.Entry<Competitor,Integer> entryMap : ranking.entrySet()) {
-			displayer.display(entryMap.getKey().getName() + " --> " + entryMap.getValue());
-		}
+	public Map<Competitor, Integer> showRanking() {
+		return ranking;
 	}
 
 

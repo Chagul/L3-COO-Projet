@@ -5,8 +5,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.BeforeEach;
 
-import main.java.fr.ulille.l3.match.Match;
-import main.java.fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.modele.Competitor;
 
 /**
  * Abstract class that assemble all the common behviour between matches

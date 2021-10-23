@@ -1,4 +1,4 @@
-package main.java.fr.ulille.l3.exceptions;
+package fr.ulille.l3.exceptions;
 
 /**
  * Exception expressing the fact that the number of competitors is not a power of 2 when creating a competition that requires it.

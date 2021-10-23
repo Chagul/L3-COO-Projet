@@ -1,2 +1,2 @@
 Manifest-Version: 1.0
-Main-Class: main.java.fr.ulille.l3.application.Main
+Main-Class: fr.ulille.l3.application.Main

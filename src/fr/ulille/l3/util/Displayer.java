@@ -1,4 +1,4 @@
-package main.java.fr.ulille.l3.util;
+package fr.ulille.l3.util;
 
 
 /** This class centralize all the display that occurs. Only one instance of displayer can exists.

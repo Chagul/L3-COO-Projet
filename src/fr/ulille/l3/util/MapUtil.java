@@ -1,4 +1,4 @@
-package main.java.fr.ulille.l3.util ;
+package fr.ulille.l3.util ;
 
 import java.util.ArrayList;
 import java.util.Collections;

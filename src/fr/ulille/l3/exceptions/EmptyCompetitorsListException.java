@@ -1,4 +1,4 @@
-package main.java.fr.ulille.l3.exceptions;
+package fr.ulille.l3.exceptions;
 
 /**
  * Exception expressing the fact that a competition is created with an empty list of competitors.

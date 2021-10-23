@@ -1,4 +1,4 @@
-package main.java.fr.ulille.l3.modele;
+package fr.ulille.l3.modele;
 
 import java.util.Objects;
 

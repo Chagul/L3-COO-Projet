@@ -1,11 +1,11 @@
-package main.java.fr.ulille.l3.competitions;
+package fr.ulille.l3.competitions;
 
 import java.util.List;
 
-import main.java.fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
-import main.java.fr.ulille.l3.exceptions.EmptyCompetitorsListException;
-import main.java.fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
-import main.java.fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
+import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
+import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
+import fr.ulille.l3.modele.Competitor;
 
 /**
  * Class implementing the factory method pattern. Use it to create any type of competition.

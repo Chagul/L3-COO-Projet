@@ -6,11 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import main.java.fr.ulille.l3.exceptions.NoSuchTypeOfMatchException;
-import main.java.fr.ulille.l3.match.BasicMatch;
-import main.java.fr.ulille.l3.match.Match;
-import main.java.fr.ulille.l3.match.MatchFactory;
-import main.java.fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.exceptions.NoSuchTypeOfMatchException;
+import fr.ulille.l3.modele.Competitor;
 
 class TestMatchFactory {
 

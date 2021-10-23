@@ -1,8 +1,8 @@
-package main.java.fr.ulille.l3.match;
+package fr.ulille.l3.match;
 
 import java.util.Random;
 
-import main.java.fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.modele.Competitor;
 /**
  * A basic match is defined with the winner chosen randomly.
  * @author Aurélien, Lucas
