@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
-import fr.ulille.l3.util.Displayer;
-import fr.ulille.l3.util.MapUtil;
 
 /**
  * Centralize all the informations about the ranking, competitors, their wins and their score.
