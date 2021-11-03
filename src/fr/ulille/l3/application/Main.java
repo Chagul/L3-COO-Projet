@@ -9,6 +9,7 @@ import fr.ulille.l3.competitions.Competition;
 import fr.ulille.l3.competitions.CompetitionFactory;
 import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
 import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
+import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.util.Displayer;
@@ -43,11 +44,32 @@ public class Main {
 			displayer.display("Competiteur ajouté !");
 		}
 		
-		displayer.display("Veuillez entrer votre type de competition parmis");
-		displayer.display("League ou Tournament");
+		displayer.display("Veuillez entrer votre type de competition parmi :");
+		displayer.display("League, Tournament ou Master");
 		
+		String answer = sc.next();
+		int nbGroups = 0;
+		if(answer.equals("Master")) {
+			displayer.display("Entrez un nombre de groupes pour le Master");
+			nbGroups = Integer.parseInt(sc.next());
+			CompetitionFactory factory = new CompetitionFactory();
+			try {
+				Competition competition = factory.createCompetition(answer, competitors, nbGroups);
+			} catch (NullPointerException | EmptyCompetitorsListException | CompetitorsNumberNotPowerOf2Exception
+					| NoSuchTypeOfCompetitionException | InvalidNumberOfGroupException e) {
+				e.printStackTrace();
+				System.exit(1);
+			}
+		}
 		CompetitionFactory factory = new CompetitionFactory();
-		Competition competition = factory.createCompetition(sc.next(),competitors);
+		Competition competition = null;
+		try {
+			competition = factory.createCompetition(answer, competitors, nbGroups);
+		} catch (NullPointerException | EmptyCompetitorsListException | CompetitorsNumberNotPowerOf2Exception
+				| NoSuchTypeOfCompetitionException | InvalidNumberOfGroupException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
 		sc.close();
 
 		competition.play();

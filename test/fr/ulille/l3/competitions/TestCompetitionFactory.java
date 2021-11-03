@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
 import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
+import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.modele.Competitor;
 
@@ -31,7 +32,14 @@ class TestCompetitionFactory {
 	void testCreateLeague() throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception, NoSuchTypeOfCompetitionException {
 		List<Competitor> competitors = new ArrayList<>();
 		competitors.add(c1); competitors.add(c2);
-		Competition league = factory.createCompetition("League", competitors);
+		Competition league = null;
+		try {
+			league = factory.createCompetition("League", competitors, 0);
+		} catch (NullPointerException | EmptyCompetitorsListException | CompetitorsNumberNotPowerOf2Exception
+				| NoSuchTypeOfCompetitionException | InvalidNumberOfGroupException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(League.class, league.getClass());
 	}
 
@@ -39,7 +47,14 @@ class TestCompetitionFactory {
 	void testCreateTournament() throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception, NoSuchTypeOfCompetitionException {
 		List<Competitor> competitors = new ArrayList<>();
 		competitors.add(c1); competitors.add(c2);
-		Competition tournament = factory.createCompetition("Tournament", competitors);
+		Competition tournament = null;
+		try {
+			tournament = factory.createCompetition("Tournament", competitors, 0);
+		} catch (NullPointerException | EmptyCompetitorsListException | CompetitorsNumberNotPowerOf2Exception
+				| NoSuchTypeOfCompetitionException | InvalidNumberOfGroupException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(Tournament.class, tournament.getClass());
 	}
 	
@@ -48,7 +63,7 @@ class TestCompetitionFactory {
 		List<Competitor> competitors = new ArrayList<>();
 		competitors.add(c1); competitors.add(c2);
 		assertThrows(NoSuchTypeOfCompetitionException.class, () -> {
-			factory.createCompetition("Unknown", competitors);
+			factory.createCompetition("Unknown", competitors, 0);
 		});
 	}
 }

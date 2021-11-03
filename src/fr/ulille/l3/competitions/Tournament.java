@@ -41,6 +41,7 @@ public class Tournament extends Competition {
 	 */
 	@Override
 	protected void play(List<Competitor> competitors) {
+		System.out.println("Tournament");
 		List<Competitor> remainingCompetitors = new ArrayList<Competitor>(competitors);
 		while(remainingCompetitors.size() > 1) {
 			Competitor c1 = remainingCompetitors.get(0);

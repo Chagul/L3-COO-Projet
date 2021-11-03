@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
 import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
+import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.modele.Competitor;
 
@@ -24,12 +25,15 @@ public class CompetitionFactory {
 	 * @throws CompetitorsNumberNotPowerOf2Exception
 	 * @throws NoSuchTypeOfCompetitionException
 	 */
-	public Competition createCompetition(String typeCompetition, List<Competitor> listOfCompetitors) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception, NoSuchTypeOfCompetitionException {
+	public Competition createCompetition(String typeCompetition, List<Competitor> listOfCompetitors, int nbGroups) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception, NoSuchTypeOfCompetitionException, InvalidNumberOfGroupException {
 		if(typeCompetition.equals("League")){
 			return new League(listOfCompetitors);
 		}
 		else if(typeCompetition.equals("Tournament")) {
 			return new Tournament(listOfCompetitors);
+		}
+		else if(typeCompetition.equals("Master")) {
+			return new Master(listOfCompetitors, new SelectionStrategyBasicMaster(), nbGroups);
 		}
 		
 		throw new NoSuchTypeOfCompetitionException("There is no competition with that name");
