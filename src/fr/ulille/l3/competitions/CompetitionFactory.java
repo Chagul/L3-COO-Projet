@@ -26,13 +26,13 @@ public class CompetitionFactory {
 	 * @throws NoSuchTypeOfCompetitionException
 	 */
 	public Competition createCompetition(String typeCompetition, List<Competitor> listOfCompetitors, int nbGroups) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception, NoSuchTypeOfCompetitionException, InvalidNumberOfGroupException {
-		if(typeCompetition.equals("League")){
+		if(typeCompetition.equals("league")){
 			return new League(listOfCompetitors);
 		}
-		else if(typeCompetition.equals("Tournament")) {
+		else if(typeCompetition.equals("tournament")) {
 			return new Tournament(listOfCompetitors);
 		}
-		else if(typeCompetition.equals("Master")) {
+		else if(typeCompetition.equals("master")) {
 			return new Master(listOfCompetitors, new SelectionStrategyBasicMaster(), nbGroups);
 		}
 		

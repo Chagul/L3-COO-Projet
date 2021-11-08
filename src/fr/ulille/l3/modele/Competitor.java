@@ -8,9 +8,12 @@ import java.util.Objects;
 public class Competitor {
 	
 	protected String name;
+	protected static int cptIdCompetitor = 0;
+	protected final int idCompetitor;
 	
 	public Competitor(String name) {
 		this.name = name;
+		idCompetitor = ++cptIdCompetitor;
 	}
 
 	public String getName() {
@@ -19,7 +22,7 @@ public class Competitor {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(name);
+		return Objects.hash(idCompetitor, name);
 	}
 
 	/**
@@ -36,7 +39,14 @@ public class Competitor {
 		if (getClass() != obj.getClass())
 			return false;
 		Competitor other = (Competitor) obj;
-		return Objects.equals(name, other.name);
+		return idCompetitor == other.idCompetitor && Objects.equals(name, other.name);
 	}
+
+	@Override
+	public String toString() {
+		return name + " with id " + idCompetitor + " ";
+	}
+
+
 	
 }

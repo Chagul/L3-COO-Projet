@@ -10,6 +10,7 @@ import fr.ulille.l3.match.MatchFactory;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.modele.Leaderboard;
 import fr.ulille.l3.util.Displayer;
+import fr.ulille.l3.util.MapUtil;
 
 /**
  * Abstract class that assemble all the commons behavior between all the competition
@@ -33,6 +34,7 @@ public abstract class Competition {
 
 	public void play() {
 		this.play(competitors);
+		this.showRanking();
 	}
 
 	protected abstract void play(List<Competitor> competitors);
@@ -48,7 +50,7 @@ public abstract class Competition {
 		Competitor winner = matchToPlay.play();
 		incrementScoreOfWinnner(winner);
 		incrementMatchesPlayed();
-		Displayer.getInstance().display(c1.getName() + " vs " + c2.getName() + " --> Winner : " + winner.getName());
+		Displayer.getInstance().display(c1 + " vs " + c2 + " --> Winner : " + winner);
 		return winner;
 	}
 
@@ -88,5 +90,15 @@ public abstract class Competition {
 	
 	protected Leaderboard getLeaderboard() {
 		return this.leaderboard;
+	}
+	
+	protected void showRanking() {
+		Displayer displayer = Displayer.getInstance();
+		Map<Competitor,Integer> ranks = this.ranking();
+		ranks = MapUtil.sortByDescendingValue(ranks);
+		displayer.display("\n*** RANKING ***");
+		for (Map.Entry<Competitor,Integer> entryMap : ranks.entrySet()) {
+			displayer.display(entryMap.getKey().getName() + " --> " + entryMap.getValue());
+		}
 	}
 }

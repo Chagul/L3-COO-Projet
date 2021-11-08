@@ -11,13 +11,13 @@ import fr.ulille.l3.modele.Competitor;
 
 public class Master extends Competition {
 	
-	protected SelectionStrategy selection;
+	protected SelectionStrategy strategy;
 	protected List<League> groups;
 	protected Tournament finalStage;
 
 	public Master(List<Competitor> competitors, SelectionStrategy selection, int nbGroups) throws NullPointerException, EmptyCompetitorsListException, InvalidNumberOfGroupException {
 		super(competitors);
-		this.selection = selection;
+		this.strategy = selection;
 		this.groups = new ArrayList<>();
 		createGroups(competitors, nbGroups);
 	}
@@ -43,7 +43,7 @@ public class Master extends Competition {
 	@Override
 	protected void play(List<Competitor> competitors) {
 		this.playGroups();
-		List<Competitor> qualifiedCompetitors = this.selection.selection(groups);
+		List<Competitor> qualifiedCompetitors = this.strategy.selection(groups);
 		this.finalStage = null;
 		try {
 			this.finalStage = new Tournament(qualifiedCompetitors);
@@ -51,17 +51,14 @@ public class Master extends Competition {
 			e.printStackTrace();
 			System.exit(1);
 		}
+		System.out.println("play final stage");
 		this.finalStage.play();
+		System.out.println("play final stage");
 	}
 
 	private void playGroups() {
 		for(League l : this.groups) {
 			l.play();
 		}
-	}
-	
-	@Override
-	public Map<Competitor,Integer> ranking() {
-		return this.finalStage.ranking();
 	}
 }

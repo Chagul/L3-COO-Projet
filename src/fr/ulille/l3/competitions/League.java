@@ -28,6 +28,8 @@ public class League extends Competition {
 				playMatch(competitors.get(indexCompetitor2), competitors.get(indexCompetitor1));
 			}
 		}
+		
+		
 	}
 	
 }
