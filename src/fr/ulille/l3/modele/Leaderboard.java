@@ -41,14 +41,6 @@ public class Leaderboard {
 		this.ranking.put(aCompetitor, this.ranking.get(aCompetitor) + 1);
 	}
 
-	/**
-	 * Print the result of the competition, by descending value. Ranking will be sorted here.
-	 * @return 
-	 */
-	public Map<Competitor, Integer> showRanking() {
-		return ranking;
-	}
-
 
 	/**
 	 * 

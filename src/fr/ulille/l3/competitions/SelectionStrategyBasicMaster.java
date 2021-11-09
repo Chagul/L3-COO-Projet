@@ -19,7 +19,7 @@ public class SelectionStrategyBasicMaster implements SelectionStrategy{
 		List<Entry<Competitor,Integer>> temporaryCompetitors = new ArrayList<>();
 		for(League l : groupPhase) {
 			Map<Competitor,Integer> groupRank = l.getLeaderboard().getRanking();
-			MapUtil.sortByDescendingValue(groupRank);
+			groupRank = MapUtil.sortByDescendingValue(groupRank);
 			int indexMap = 0;
 			for(Entry<Competitor, Integer> entry : groupRank.entrySet()) {
 				Competitor currentCompetitor = entry.getKey();
@@ -36,7 +36,7 @@ public class SelectionStrategyBasicMaster implements SelectionStrategy{
 
 			@Override
 			public int compare(Entry<Competitor, Integer> o1, Entry<Competitor, Integer> o2) {
-				return o1.getValue() - o2.getValue();
+				return o2.getValue() - o1.getValue();
 			}
 		});
 		

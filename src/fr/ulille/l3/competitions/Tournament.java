@@ -49,6 +49,7 @@ public class Tournament extends Competition {
 			Competitor winner = playMatch(c1,c2);
 			removeLooserFromCompetitors(remainingCompetitors, c1, c2, winner);
 		}
+		this.showRanking();
 	}
 
 	/**

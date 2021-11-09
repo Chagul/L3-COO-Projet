@@ -34,7 +34,6 @@ public abstract class Competition {
 
 	public void play() {
 		this.play(competitors);
-		this.showRanking();
 	}
 
 	protected abstract void play(List<Competitor> competitors);
@@ -85,7 +84,7 @@ public abstract class Competition {
 	 * Display the leaderboard with all the results
 	 */
 	public Map<Competitor,Integer> ranking() {
-		return leaderboard.showRanking();
+		return leaderboard.getRanking();
 	}
 	
 	protected Leaderboard getLeaderboard() {
@@ -98,7 +97,7 @@ public abstract class Competition {
 		ranks = MapUtil.sortByDescendingValue(ranks);
 		displayer.display("\n*** RANKING ***");
 		for (Map.Entry<Competitor,Integer> entryMap : ranks.entrySet()) {
-			displayer.display(entryMap.getKey().getName() + " --> " + entryMap.getValue());
+			displayer.display("Player " + entryMap.getKey().getName() + " --> Score " + entryMap.getValue());
 		}
 	}
 }
