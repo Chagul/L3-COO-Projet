@@ -1,10 +1,10 @@
 package fr.ulille.l3.util;
 
 
-/** This class centralize all the display that occurs. Only one instance of displayer can exists.
+/** This class centralize all the display that occurs for the tests. The messages are not displayed so it is more readable. Only one instance of displayer can exists.
  * @author Aurélien, Lucas
  */
-public class Displayer implements DisplayerInterface{
+public class DisplayerTest implements DisplayerInterface{
 	
 	private static Displayer displayer;
 	
@@ -16,7 +16,7 @@ public class Displayer implements DisplayerInterface{
 	}
 	
 	public void display(String msg) {
-		System.out.println(msg);
+		//msg to trash
 	}
 
 

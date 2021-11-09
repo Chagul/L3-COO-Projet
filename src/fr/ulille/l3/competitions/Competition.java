@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
+import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
+import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfMatchException;
 import fr.ulille.l3.match.Match;
 import fr.ulille.l3.match.MatchFactory;
@@ -23,20 +25,22 @@ public abstract class Competition {
 	protected Leaderboard leaderboard;
 	protected int matchesPlayed;
 	private MatchFactory matchFactory;
+	protected Displayer displayer;
 	
 
-	public Competition(List<Competitor> competitors) throws NullPointerException, EmptyCompetitorsListException {
+	public Competition(List<Competitor> competitors,Displayer displayer) throws NullPointerException, EmptyCompetitorsListException {
 		this.competitors = competitors;
 		this.leaderboard = new Leaderboard(competitors);
 		this.matchesPlayed = 0;
 		this.matchFactory = new MatchFactory();
+		this.displayer = displayer;
 	}
 
 	public void play() {
 		this.play(competitors);
 	}
 
-	protected abstract void play(List<Competitor> competitors);
+	protected abstract void play(List<Competitor> competitors) throws NoSuchTypeOfCompetitionException, InvalidNumberOfGroupException;
 
 	/**
 	 * Default behaviour of a Match, winner is chosen randomly at this point
@@ -92,10 +96,9 @@ public abstract class Competition {
 	}
 	
 	protected void showRanking() {
-		Displayer displayer = Displayer.getInstance();
 		Map<Competitor,Integer> ranks = this.ranking();
 		ranks = MapUtil.sortByDescendingValue(ranks);
-		displayer.display("\n*** RANKING ***");
+		this.displayer.display("\n*** RANKING ***");
 		for (Map.Entry<Competitor,Integer> entryMap : ranks.entrySet()) {
 			displayer.display("Player " + entryMap.getKey().getName() + " --> Score " + entryMap.getValue());
 		}
