@@ -84,7 +84,6 @@ public class TestLeaderboard {
 		assertEquals(0, ranks.get(c1));
 		assertEquals(1, ranks.get(c2));
 		assertEquals(2, ranks.get(c3));
-		leaderboard.showRanking();
 	}
 	
 	

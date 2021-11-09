@@ -1,6 +1,5 @@
 package fr.ulille.l3.competitions;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.ArrayList;
@@ -45,23 +44,13 @@ public class TestTournament extends TestCompetition {
 		});
 	}
 	
-	/**
-	 * Test if the matches played at the end of the tournament is equals to the one expected
-	 */
-	@Test
-	public void testRightCountOfMatch() {
-		this.competition.play();
-		int matchesPlayed = this.competition.getMatchesPlayed();
-		int expectedNumberOfMatches = howManyMatchesExpected(competitors);
-		assertEquals(expectedNumberOfMatches, matchesPlayed);
-	}
 	
 	/**
 	 * Calculate how many matches should be played in the tournament
 	 * @param competitors The list of competitors at the beginning of the tournament
 	 * @return The number of matches expected with the given list
 	 */
-	private int howManyMatchesExpected(List<Competitor> competitors) {
+	protected int howManyMatchesExpected(List<Competitor> competitors) {
 		return competitors.size()-1;
 	}
 	

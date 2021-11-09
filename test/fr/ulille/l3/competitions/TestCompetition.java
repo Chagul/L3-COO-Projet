@@ -1,6 +1,7 @@
 package fr.ulille.l3.competitions;
 
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -14,7 +15,7 @@ import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
 import fr.ulille.l3.modele.Competitor;
 
 /**
- * Abstract class that assemble all the commons behviour between the tests of Competition type classes
+ * Abstract class that assemble all the commons behaviour between the tests of Competition type classes
  * @author Aurélien,Lucas
  *
  */
@@ -48,6 +49,7 @@ public abstract class TestCompetition {
 	}
 
 	protected abstract Competition createCompetition() throws Exception;
+	protected abstract int howManyMatchesExpected(List<Competitor> competitors);
 
 	/**
 	 * Test if the null pointer exception is raised when a null list is used to create a Competition type.
@@ -59,6 +61,9 @@ public abstract class TestCompetition {
 		});
 		assertThrows(NullPointerException.class, () -> {
 			new Tournament(null);
+		});
+		assertThrows(NullPointerException.class, () -> {
+			new Master(null, null, 0);
 		});
 	}
 
@@ -73,6 +78,19 @@ public abstract class TestCompetition {
 		assertThrows(EmptyCompetitorsListException.class, () -> {
 			new Tournament(new ArrayList<Competitor>());
 		});
+		assertThrows(EmptyCompetitorsListException.class, () -> {
+			new Master(new ArrayList<Competitor>(), null, 0);
+		});
 	}
 	
+	/**
+	 * Test if all the matches are played.
+	 */
+	@Test
+	public void testRightCountOfMatches() {
+		this.competition.play();
+		int matchesPlayed = this.competition.getMatchesPlayed();
+		int expectedNumberOfMatches = howManyMatchesExpected(competitors);
+		assertEquals(expectedNumberOfMatches, matchesPlayed);
+	}
 }
