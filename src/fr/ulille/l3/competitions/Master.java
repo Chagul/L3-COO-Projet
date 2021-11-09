@@ -7,6 +7,7 @@ import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
 import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
 import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
 import fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.modele.Leaderboard;
 
 public class Master extends Competition {
 	
@@ -40,7 +41,7 @@ public class Master extends Competition {
 	}
 
 	@Override
-	protected void play(List<Competitor> competitors) {
+	protected void play(List<Competitor> competitors){
 		this.playGroups();
 		List<Competitor> qualifiedCompetitors = this.strategy.selection(groups);
 		this.finalStage = null;
@@ -51,8 +52,16 @@ public class Master extends Competition {
 			System.exit(1);
 		}
 		System.out.println("play final stage");
+		try {
+			Map<Competitor,Integer> temporaryMap = this.leaderboard.getRanking();
+			this.leaderboard = new Leaderboard(qualifiedCompetitors);
+			for(Competitor c : qualifiedCompetitors) {
+				this.leaderboard.getRanking().put(c, temporaryMap.get(c));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		this.finalStage.play();
-		System.out.println("play final stage");
 	}
 
 	private void playGroups() {
