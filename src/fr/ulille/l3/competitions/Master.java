@@ -2,7 +2,6 @@ package fr.ulille.l3.competitions;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
 import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
