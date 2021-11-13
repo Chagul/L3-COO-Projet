@@ -8,6 +8,7 @@ import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.util.DisplayerInterface;
+import fr.ulille.l3.util.TypeOfCompetition;
 
 /**
  * Class implementing the factory method pattern. Use it to create any type of competition.
@@ -26,15 +27,16 @@ public class CompetitionFactory {
 	 * @throws EmptyCompetitorsListException
 	 * @throws CompetitorsNumberNotPowerOf2Exception
 	 * @throws NoSuchTypeOfCompetitionException
+	 * @throws InvalidNumberOfGroupException 
 	 */
 	public Competition createCompetition(String typeCompetition,List<Competitor> listOfCompetitors, int nbGroups,DisplayerInterface displayer) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception, NoSuchTypeOfCompetitionException, InvalidNumberOfGroupException {
-		if(typeCompetition.toLowerCase().equals("league")){
+		if(typeCompetition.toLowerCase().equals(TypeOfCompetition.League.getLabel())){
 			return new League(listOfCompetitors, displayer);
 		}
-		else if(typeCompetition.toLowerCase().equals("tournament")) {
+		else if(typeCompetition.toLowerCase().equals(TypeOfCompetition.Tournament.getLabel())) {
 			return new Tournament(listOfCompetitors,displayer);
 		}
-		else if(typeCompetition.toLowerCase().equals("master")) {
+		else if(typeCompetition.toLowerCase().equals(TypeOfCompetition.Master.getLabel())) {
 			return new Master(listOfCompetitors, new SelectionStrategyBasicMaster(), nbGroups,displayer);
 		}
 		

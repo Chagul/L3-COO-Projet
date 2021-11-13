@@ -38,7 +38,6 @@ class TestCompetitionFactory {
 			league = factory.createCompetition("League", competitors, 0,displayer);
 		} catch (NullPointerException | EmptyCompetitorsListException | CompetitorsNumberNotPowerOf2Exception
 				| NoSuchTypeOfCompetitionException | InvalidNumberOfGroupException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		assertEquals(League.class, league.getClass());

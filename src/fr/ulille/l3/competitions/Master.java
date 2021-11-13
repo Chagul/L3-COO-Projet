@@ -9,6 +9,7 @@ import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.util.DisplayerInterface;
+import fr.ulille.l3.util.TypeOfCompetition;
 
 public class Master extends Competition {
 	
@@ -57,22 +58,22 @@ public class Master extends Competition {
 	 * @throws NoSuchTypeOfCompetitionException 
 	 */
 	@Override
-	protected void play(List<Competitor> competitors) throws NoSuchTypeOfCompetitionException, InvalidNumberOfGroupException{
+	protected void play(List<Competitor> competitors){
 		this.playGroups();
 		List<Competitor> qualifiedCompetitors = this.strategy.selection(groups);
 		this.finalStage = null;
 		try {
 			CompetitionFactory factory = CompetitionFactory.getInstance();
-			this.finalStage = factory.createCompetition("Tournament", qualifiedCompetitors, 0,this.displayer);
-		} catch (NullPointerException | EmptyCompetitorsListException | CompetitorsNumberNotPowerOf2Exception e) {
+			this.finalStage = factory.createCompetition(TypeOfCompetition.Tournament.getLabel(), qualifiedCompetitors, 0,this.displayer);
+		} catch (NullPointerException | EmptyCompetitorsListException | CompetitorsNumberNotPowerOf2Exception | NoSuchTypeOfCompetitionException | InvalidNumberOfGroupException e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		System.out.println("play final stage");
+		this.displayer.display("\n play final stage");
 		this.finalStage.play();
 	}
 
-	private void playGroups() throws NoSuchTypeOfCompetitionException, InvalidNumberOfGroupException {
+	private void playGroups(){
 		for(League l : this.groups) {
 			l.play();
 		}

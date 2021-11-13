@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
-import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
-import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfMatchException;
 import fr.ulille.l3.match.Match;
 import fr.ulille.l3.match.MatchFactory;
@@ -36,11 +34,11 @@ public abstract class Competition {
 		this.displayer = displayer;
 	}
 
-	public void play() throws NoSuchTypeOfCompetitionException, InvalidNumberOfGroupException {
+	public void play() {
 		this.play(competitors);
 	}
 
-	protected abstract void play(List<Competitor> competitors) throws NoSuchTypeOfCompetitionException, InvalidNumberOfGroupException;
+	protected abstract void play(List<Competitor> competitors);
 
 	/**
 	 * Default behaviour of a Match, winner is chosen randomly at this point
