@@ -70,24 +70,35 @@ firefox index.html
 
 # Diagrammes UML
 
+## Competition V1
 ![umlCompetition](./Screenshots/umlCompetition.png "UML des competitions")
 
+## Competition V2
+![umlCompetition](./Screenshots/umlCompetitionV2.png "UML des competitions V2")
 
+## Matchs
 ![umlMatch](./Screenshots/umlMatch.png "UML des matchs")
 
-
+## Modèle V1
 ![umlModel](./Screenshots/umlModele.png "UML du modèle")
 
-
+## Exception V1
 ![umlException](./Screenshots/umlException.png "UML des exceptions")
+
+## Exception V2
+![umlException](./Screenshots/umlExceptionV2.png "UML des exceptions V2")
 
 
 ![umlMapUtil](./Screenshots/umlMapUtil.png "UML de MapUtil")
 
-
+## Displayer V1
 ![umlDisplayer](./Screenshots/umlDisplayer.png "UML de la Displayer")
 
+## Displayer V2
+![umlDisplayer](./Screenshots/umlDisplayerV2.png "UML de la Displayer V2")
 
+## Enum type of competition
+![umlDisplayer](./Screenshots/umlEnum.png "UML de l'enum'")
 
 # Principes et éléments de conceptions important utilisé.
 
@@ -102,8 +113,26 @@ Ces classes abstraites sont un point essentiel du projet. En effet nous savons q
 
 Le displayer est la classe qui centralise les affichages. Il n'y a aucune raison d'instancier plus d'une fois de cette classe, le singleton nous permet donc d'éviter cela en limitant le nombre d'exemplaire de cette classe à 1. Cela permet d'économiser des ressources et s'assurer que nous utilisons toujours la même instance, nous facilitant ainsi la tâche pour l'initialisation et donc potentiellement le débuggage. 
 
-## Héritage de tests
+## Héritage de tests 
 
 Comme pour les matchs et compétitions, les tests qui concernent ces différentes classes regroupent des comportements communs. En installant une relation d'héritage avec l'aide de classes abstraites, cela nous permet de tester les comportements communs facilement sans devoir réécrire pour chaque nouvelle classe le même test. En plus de cela grâce à cet héritage, nous pouvons faire des tests spécifiques pour une sous-classe.
 
+## Competition factory et singleton (V2)
 
+Nous avons décidé d'implémenter une factory pour créer les différentes compétitions. Cela nous permet de centraliser toutes les instanciations à un seul endroit. En plus de respecter le principe SOLID, cela permettra dans le futur de tester plus facilement les classes qui utilisent cette factory. Nous avons également ajouter un singleton pour s'assurer qu'une seule instance de cette factory existe car il n'y a pas de raison d'en avoir plusieurs instances.
+
+## Interface displayer (V2)
+
+Nous avons créer une interface pour les displayer. Le but est simple, pouvoir créer différents displayer et être ainsi plus flexible sur l'affichage. Pour donner un exemple nous pouvons désormais créer un displayer pour le fonctionnement normal du programme qui produira l'affichage voulu et d'un autre côté en avoir un prévu pour les tests qui ne produira aucun affichage, ce qui permet au résultats des tests de ne pas être noyé dans des affichages.
+
+## Selection Strategy (V2)
+
+Ce design pattern (strategy) à été utilisé dans la V2 du projet afin de mieux respecter les valeurs de l'open closed. En effet grâce à cette strategy nous pouvons décider de juste implémenter une nouvelle classe qui inclu l'interface Selection Strategy et redefinir le mode de séléction de la première phase à la seconde phase d'un master et de ce fait nous n'avons pas besoin de modifier le code de la classe master. 
+
+## Enum type of competition (V2)
+
+Nous avons décidé de créer également une énumeration enrichie qui ne sert pour le moment que pour les noms des différentes compétitions, cette énumération nous permet de centraliser les Strings que nous utilisons dans le code pour décider quel compétitions créer. Cela permet d'uniformiser ces Strings dans tout le code.
+
+# V2 Remarques générales
+
+Dans cette V2 nous devions implémenter un nouveau type de compétition nommé Master. Cette compétition est prévue de telle sorte à avoir une première phase de qualification, une de séléction et finalement une phase finale avec les joueurs séléctionnés. Pour réaliser cette V2, nous avons donc décider de reprendre ce que nous avions déjà créé, nous avons donc effectué ce fonctionnement avec le principe suivant : une liste de compétition qui représente la première partie du master, chaque compétition dans cette liste étant joué une par une. Pour la selection nous avons, comme vu précédemment, implémenter un design pattern de strategy pour pouvoir définir les règles d'accésibilité a la phase finale. Pour finir pour la phase finale, celle ci est définie comme un Tournamenent qui est joué avec les joueurs qualifiés. Cette implémentation était assez facile à réaliser comme nous avions pensé au principe open-closed dès la v1.
