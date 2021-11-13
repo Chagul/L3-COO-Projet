@@ -55,7 +55,7 @@ java -jar lib/Junit-console.jar --class-path bin/ --scan-class-path
 En partant de la racine du projet : 
 ```shell
 cd src
-javadoc -d ../doc -subpackages main  
+javadoc -d ../doc -subpackages fr  
 cd ..
 ```
 
@@ -119,25 +119,25 @@ Comme pour les matchs et compétitions, les tests qui concernent ces différente
 
 ## Competition factory et singleton (V2)
 
-Nous avons décidé d'implémenter une factory pour créer les différentes compétitions. Cela nous permet de centraliser toutes les instanciations à un seul endroit. En plus de respecter le principe SOLID, cela permettra dans le futur de tester plus facilement les classes qui utilisent cette factory. Nous avons également ajouter un singleton pour s'assurer qu'une seule instance de cette factory existe car il n'y a pas de raison d'en avoir plusieurs instances.
+Nous avons décidé d'implémenter une factory pour créer les différentes compétitions. Cela nous permet de centraliser toutes les instanciations à un seul endroit. En plus de respecter le principe SOLID, cela permettra dans le futur de tester plus facilement les classes qui utilisent cette factory. Nous avons également ajouté un singleton pour s'assurer qu'une seule instance de cette factory existe car il n'y a pas de raison d'avoir plusieurs instances.
 
 ## Interface displayer (V2)
 
-Nous avons créer une interface pour les displayer. Le but est simple, pouvoir créer différents displayer et être ainsi plus flexible sur l'affichage. Pour donner un exemple nous pouvons désormais créer un displayer pour le fonctionnement normal du programme qui produira l'affichage voulu et d'un autre côté en avoir un prévu pour les tests qui ne produira aucun affichage, ce qui permet au résultats des tests de ne pas être noyé dans des affichages.
+Nous avons créé une interface pour les displayer. Le but est simple, pouvoir créer différents displayer et être ainsi plus flexible sur l'affichage. Pour donner un exemple nous pouvons désormais créer un displayer pour le fonctionnement normal du programme qui produira l'affichage voulu et d'un autre côté en avoir un prévu pour les tests qui ne produira aucun affichage, ce qui permet aux résultats des tests de ne pas être noyés dans des affichages.
 
 ## Selection Strategy (V2)
 
-Ce design pattern (strategy) à été utilisé dans la V2 du projet afin de mieux respecter les valeurs de l'open closed. En effet grâce à cette strategy nous pouvons décider de juste implémenter une nouvelle classe qui inclu l'interface Selection Strategy et redefinir le mode de séléction de la première phase à la seconde phase d'un master et de ce fait nous n'avons pas besoin de modifier le code de la classe master. 
+Ce design pattern (strategy) à été utilisé dans la V2 du projet afin de mieux respecter les valeurs de l'open closed. En effet grâce à cette strategy nous pouvons décider de juste implémenter une nouvelle classe qui implémente l'interface Selection Strategy et redéfinir le mode de sélection de la première phase à la seconde phase d'un master. De ce fait nous n'avons pas besoin de modifier le code de la classe master. 
 
 ## Enum typeOfCompetition (V2)
 
-Nous avons décidé de créer également une énumeration enrichie qui ne sert pour le moment que pour les noms des différentes compétitions, cette énumération nous permet de centraliser les Strings que nous utilisons dans le code pour décider quel compétitions créer. Cela permet d'uniformiser ces Strings dans tout le code.
+Nous avons décidé de créer également une énumeration enrichie qui ne sert pour le moment que pour les noms des différentes compétitions, cette énumération nous permet de centraliser les Strings que nous utilisons dans le code pour décider quelle compétition créer. Cela permet d'uniformiser ces Strings dans tout le code.
 
 ## Héritage d'exception (V2)
 
-Nous avons rajouter une couche d'abstraction au niveau des exceptions. Cela nous permet de regrouper les exceptions concernant les problèmes de création de compétitions sous la même classe, CannotCreateCOmpetitionException. En plus d'améliorer la visibilté, cela nous permet de throws ce type d'exception dans l'abstraction de compétition.
+Nous avons rajouté une couche d'abstraction au niveau des exceptions. Cela nous permet de regrouper les exceptions concernant les problèmes de création de compétitions sous la même classe, CannotCreateCompetitionException. En plus d'améliorer la visibilté, cela nous permet de throws ce type d'exception dans l'abstraction de compétition.
 
 
 # V2 Remarques générales
 
-Dans cette V2 nous devions implémenter un nouveau type de compétition nommé Master. Cette compétition est prévue de telle sorte à avoir une première phase de qualification, une de séléction et finalement une phase finale avec les joueurs séléctionnés. Pour réaliser cette V2, nous avons donc décider de reprendre ce que nous avions déjà créé, nous avons donc effectué ce fonctionnement avec le principe suivant : une liste de compétition qui représente la première partie du master, chaque compétition dans cette liste étant joué une par une. Pour la selection nous avons, comme vu précédemment, implémenter un design pattern de strategy pour pouvoir définir les règles d'accésibilité a la phase finale. Pour finir pour la phase finale, celle ci est définie comme un Tournamenent qui est joué avec les joueurs qualifiés. Cette implémentation était assez facile à réaliser comme nous avions pensé au principe open-closed dès la v1. Nous avons également rajouté une méthode qui permet pour chaque compétition de vérifier si celle ci est créable. A la fin de chaque constructeur, cette méthode est appelée et ensuite vérifiera selon le type de compétition et ses paramètres de création si la création est en effet possible.
+Dans cette V2 nous devions implémenter un nouveau type de compétition nommé Master. Cette compétition est prévue de telle sorte à avoir une première phase de qualifications, une de sélection et finalement une phase finale avec les joueurs sélectionnés. Pour réaliser cette V2, nous avons donc décidé de reprendre ce que nous avions déjà créé, nous avons donc effectué ce fonctionnement avec le principe suivant : une liste de compétition qui représente la première partie du master, chaque compétition dans cette liste étant joué une par une. Pour la selection nous avons, comme vu précédemment, implémenter un design pattern de strategy pour pouvoir définir les règles d'accessibilité à la phase finale. Pour finir, la phase finale est définie comme un Tournament qui est joué avec les joueurs qualifiés. Cette implémentation était assez facile à réaliser comme nous avions pensé au principe open-closed dès la v1. Nous avons également rajouté une méthode qui permet pour chaque compétition de vérifier si celle-ci est créable. A la fin de chaque constructeur, cette méthode est appelée et vérifiera selon le type de compétition et ses paramètres de création s'il est possible de l'instancier.
