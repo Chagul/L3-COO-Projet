@@ -104,7 +104,7 @@ public class Main {
 			for(int index = 0; index < arrayStrategy.length; index ++) {
 				displayer.display(index+1 + ":" + arrayStrategy[index].getDescription());
 			}
-			displayer.display("Choisissez la strategie de séléction que vous souhaitez utiliser");
+			displayer.display("Choisissez la strategie de sélection que vous souhaitez utiliser");
 			answer = Integer.parseInt(sc.next());
 		}
 		return arrayStrategy[answer-1].getLabel();

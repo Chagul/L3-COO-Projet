@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
+import fr.ulille.l3.exceptions.NoSuchTypeOfStrategyException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.util.TestDisplayer;
 
@@ -40,8 +41,8 @@ class TestCompetitionFactory {
 		competitors.add(c1); competitors.add(c2);
 		Competition league = null;
 		try {
-			league = factory.createCompetition("League", competitors, 0,displayer);
-		} catch (NullPointerException | CannotCreateCompetitionException | NoSuchTypeOfCompetitionException e) {
+			league = factory.createCompetition("League", competitors,displayer);
+		} catch (NullPointerException | CannotCreateCompetitionException | NoSuchTypeOfCompetitionException | NoSuchTypeOfStrategyException e) {
 			e.printStackTrace();
 			fail();
 		}
@@ -54,8 +55,8 @@ class TestCompetitionFactory {
 		competitors.add(c1); competitors.add(c2);
 		Competition tournament = null;
 		try {
-			tournament = factory.createCompetition("Tournament", competitors, 0,displayer);
-		} catch (NullPointerException | CannotCreateCompetitionException | NoSuchTypeOfCompetitionException e) {
+			tournament = factory.createCompetition("Tournament", competitors,displayer);
+		} catch (NullPointerException | CannotCreateCompetitionException | NoSuchTypeOfCompetitionException | NoSuchTypeOfStrategyException e) {
 			e.printStackTrace();
 			fail();
 		}
@@ -67,7 +68,10 @@ class TestCompetitionFactory {
 		List<Competitor> competitors = new ArrayList<>();
 		competitors.add(c1); competitors.add(c2);
 		assertThrows(NoSuchTypeOfCompetitionException.class, () -> {
-			factory.createCompetition("Unknown", competitors, 0,displayer);
+			factory.createCompetition("Unknown", competitors,displayer);
+		});
+		assertThrows(NoSuchTypeOfCompetitionException.class, () -> {
+			factory.createCompetition("Unknown", competitors,0,null,displayer);
 		});
 	}
 }
