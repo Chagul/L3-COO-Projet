@@ -71,7 +71,7 @@ class TestMaster extends TestCompetition {
 	@Test
 	public void testThrowsInvalidNumberOfGroupException() {
 		assertThrows(InvalidNumberOfGroupException.class, () -> {
-			Master invalid = new Master(this.competitors, strategy, 2, displayer);
+			new Master(this.competitors, strategy, 2, displayer);
 		});
 	}
 

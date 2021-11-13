@@ -32,7 +32,7 @@ Pour compiler le projet et générer le jar du projet en partant de la racine du
 cd ple_lucas_plancke_aurelien-coo-projet
 ./compile.sh
 cd bin 
-jar cvfm ../ProjetCOO.jar ../MANIFEST.MF fr/ulille/l3 
+jar cvfm ../ProjetCOO.jar ../MANIFEST.MF fr/ulille/l3 res
 cd ..
 ```
 
