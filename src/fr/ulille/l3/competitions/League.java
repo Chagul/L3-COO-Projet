@@ -4,7 +4,7 @@ import java.util.List;
 
 import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
 import fr.ulille.l3.modele.Competitor;
-import fr.ulille.l3.util.Displayer;
+import fr.ulille.l3.util.DisplayerInterface;
 
 /**
  * League is a type of competition with the rule that every competitor must play against others competitors at least twice
@@ -13,7 +13,7 @@ import fr.ulille.l3.util.Displayer;
  */
 public class League extends Competition {
 
-	public League(List<Competitor> competitors,Displayer displayer) throws NullPointerException, EmptyCompetitorsListException {
+	public League(List<Competitor> competitors,DisplayerInterface displayer) throws NullPointerException, EmptyCompetitorsListException {
 		super(competitors,displayer);
 	}
 	

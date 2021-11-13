@@ -11,7 +11,7 @@ import fr.ulille.l3.match.Match;
 import fr.ulille.l3.match.MatchFactory;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.modele.Leaderboard;
-import fr.ulille.l3.util.Displayer;
+import fr.ulille.l3.util.DisplayerInterface;
 import fr.ulille.l3.util.MapUtil;
 
 /**
@@ -25,10 +25,10 @@ public abstract class Competition {
 	protected Leaderboard leaderboard;
 	protected int matchesPlayed;
 	private MatchFactory matchFactory;
-	protected Displayer displayer;
+	protected DisplayerInterface displayer;
 	
 
-	public Competition(List<Competitor> competitors,Displayer displayer) throws NullPointerException, EmptyCompetitorsListException {
+	public Competition(List<Competitor> competitors,DisplayerInterface displayer) throws NullPointerException, EmptyCompetitorsListException {
 		this.competitors = competitors;
 		this.leaderboard = new Leaderboard(competitors);
 		this.matchesPlayed = 0;
@@ -36,7 +36,7 @@ public abstract class Competition {
 		this.displayer = displayer;
 	}
 
-	public void play() {
+	public void play() throws NoSuchTypeOfCompetitionException, InvalidNumberOfGroupException {
 		this.play(competitors);
 	}
 
@@ -53,7 +53,7 @@ public abstract class Competition {
 		Competitor winner = matchToPlay.play();
 		incrementScoreOfWinnner(winner);
 		incrementMatchesPlayed();
-		Displayer.getInstance().display(c1 + " vs " + c2 + " --> Winner : " + winner);
+		this.displayer.display(c1 + " vs " + c2 + " --> Winner : " + winner);
 		return winner;
 	}
 

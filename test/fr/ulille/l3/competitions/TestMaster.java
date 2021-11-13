@@ -30,7 +30,7 @@ class TestMaster extends TestCompetition {
 		this.competitors.add(c7);
 		this.competitors.add(c8);
 		this.competitors.add(c9);
-		return new Master(this.competitors, new SelectionStrategyBasicMaster(), 3);
+		return new Master(this.competitors, new SelectionStrategyBasicMaster(), 3,displayer);
 	}
 	
 	@Override

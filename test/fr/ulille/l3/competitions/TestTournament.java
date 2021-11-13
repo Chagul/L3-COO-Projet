@@ -27,7 +27,7 @@ public class TestTournament extends TestCompetition {
 		this.competitors.add(c3);
 		this.competitors.add(c4);
 		
-		return new Tournament(this.competitors);
+		return new Tournament(this.competitors,displayer);
 	}
 	
 	/**
@@ -40,7 +40,7 @@ public class TestTournament extends TestCompetition {
 		competitorsNotPowerOf2.add(c2);
 		competitorsNotPowerOf2.add(c3);
 		assertThrows(CompetitorsNumberNotPowerOf2Exception.class, () -> {
-			new Tournament(competitorsNotPowerOf2);
+			new Tournament(competitorsNotPowerOf2,displayer);
 		});
 	}
 	

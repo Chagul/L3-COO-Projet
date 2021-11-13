@@ -11,7 +11,7 @@ import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
 import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.modele.Competitor;
-import fr.ulille.l3.util.Displayer;
+import fr.ulille.l3.util.BasicDisplayer;
 
 /**
  * Main class that runs the project. Asks for competitors and a type of competition before playing it.
@@ -22,7 +22,7 @@ import fr.ulille.l3.util.Displayer;
 public class Main {
 
 	public static void main(String[] args) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception, NoSuchTypeOfCompetitionException, InvalidNumberOfGroupException {
-		Displayer displayer = Displayer.getInstance();
+		BasicDisplayer displayer = new BasicDisplayer();
 		displayer.display("Entrez votre nombre de compétiteurs");
 		Scanner sc = new Scanner(System.in);
 		int nbOfCompetitors = 0;
@@ -56,10 +56,10 @@ public class Main {
 			displayer.display("Entrez un nombre de groupes pour le Master");
 			nbGroups = Integer.parseInt(sc.next());
 			CompetitionFactory factory = new CompetitionFactory();
-			competition = factory.createCompetition(answer, competitors, nbGroups);
+			competition = factory.createCompetition(answer, competitors, nbGroups,displayer);
 		}else {
 			CompetitionFactory factory = new CompetitionFactory();
-			competition = factory.createCompetition(answer, competitors, nbGroups);
+			competition = factory.createCompetition(answer, competitors, nbGroups,displayer);
 		}
 		sc.close();
 

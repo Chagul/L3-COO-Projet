@@ -22,7 +22,7 @@ public class TestLeague extends TestCompetition {
 		this.competitors.add(c4);
 		this.competitors.add(c5);
 		
-		return new League(this.competitors);
+		return new League(this.competitors,displayer);
 	}
 	
 	

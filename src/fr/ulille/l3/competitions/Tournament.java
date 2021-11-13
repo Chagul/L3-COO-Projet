@@ -6,7 +6,7 @@ import java.util.List;
 import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
 import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
 import fr.ulille.l3.modele.Competitor;
-import fr.ulille.l3.util.Displayer;
+import fr.ulille.l3.util.DisplayerInterface;
 
 /**
  * Tournament is a type of competition that need modulo 2 of competitor, each match has one loser and one winner, the loser will not compete in the next round.
@@ -15,7 +15,7 @@ import fr.ulille.l3.util.Displayer;
  */
 public class Tournament extends Competition {
 
-	public Tournament(List<Competitor> competitors,Displayer displayer) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception {
+	public Tournament(List<Competitor> competitors,DisplayerInterface displayer) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception {
 		super(competitors,displayer);
 		checkModulo2(competitors);
 	}

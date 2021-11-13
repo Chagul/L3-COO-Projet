@@ -4,13 +4,13 @@ package fr.ulille.l3.util;
 /** This class centralize all the display that occurs. Only one instance of displayer can exists.
  * @author Aurélien, Lucas
  */
-public class Displayer implements DisplayerInterface{
+public class BasicDisplayer implements DisplayerInterface{
 	
-	private static Displayer displayer;
+	private static BasicDisplayer displayer;
 	
-	public static Displayer getInstance() {
+	public static BasicDisplayer getInstance() {
 		if(displayer == null) {
-			displayer = new Displayer();
+			displayer = new BasicDisplayer();
 		}
 		return displayer;
 	}

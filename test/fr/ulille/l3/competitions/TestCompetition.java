@@ -12,7 +12,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
+import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
+import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.util.TestDisplayer;
 
 /**
  * Abstract class that assemble all the commons behaviour between the tests of Competition type classes
@@ -29,6 +32,7 @@ public abstract class TestCompetition {
 	protected Competitor c4;
 	protected Competitor c5;
 	protected Competitor c6;
+	protected TestDisplayer displayer = TestDisplayer.getInstance();
 
 	/**
 	 * Init a competition with 5 competitors
@@ -57,13 +61,13 @@ public abstract class TestCompetition {
 	@Test
 	public void testNullPointerException() {
 		assertThrows(NullPointerException.class, () -> {
-			new League(null);
+			new League(null,displayer);
 		});
 		assertThrows(NullPointerException.class, () -> {
-			new Tournament(null);
+			new Tournament(null,displayer);
 		});
 		assertThrows(NullPointerException.class, () -> {
-			new Master(null, null, 0);
+			new Master(null, null, 0,displayer);
 		});
 	}
 
@@ -73,21 +77,23 @@ public abstract class TestCompetition {
 	@Test
 	public void testEmptyListOfCompetitors() {
 		assertThrows(EmptyCompetitorsListException.class, () -> {
-			new League(new ArrayList<Competitor>());
+			new League(new ArrayList<Competitor>(),displayer);
 		});
 		assertThrows(EmptyCompetitorsListException.class, () -> {
-			new Tournament(new ArrayList<Competitor>());
+			new Tournament(new ArrayList<Competitor>(),displayer);
 		});
 		assertThrows(EmptyCompetitorsListException.class, () -> {
-			new Master(new ArrayList<Competitor>(), null, 0);
+			new Master(new ArrayList<Competitor>(), null, 0,displayer);
 		});
 	}
 	
 	/**
 	 * Test if all the matches are played.
+	 * @throws InvalidNumberOfGroupException 
+	 * @throws NoSuchTypeOfCompetitionException 
 	 */
 	@Test
-	public void testRightCountOfMatches() {
+	public void testRightCountOfMatches() throws NoSuchTypeOfCompetitionException, InvalidNumberOfGroupException {
 		this.competition.play();
 		int matchesPlayed = this.competition.getMatchesPlayed();
 		int expectedNumberOfMatches = howManyMatchesExpected(competitors);

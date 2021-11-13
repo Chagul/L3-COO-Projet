@@ -7,7 +7,7 @@ import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
 import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.modele.Competitor;
-import fr.ulille.l3.util.Displayer;
+import fr.ulille.l3.util.DisplayerInterface;
 
 /**
  * Class implementing the factory method pattern. Use it to create any type of competition.
@@ -27,21 +27,24 @@ public class CompetitionFactory {
 	 * @throws CompetitorsNumberNotPowerOf2Exception
 	 * @throws NoSuchTypeOfCompetitionException
 	 */
-	public Competition createCompetition(String typeCompetition,Displayer displayer, List<Competitor> listOfCompetitors, int nbGroups) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception, NoSuchTypeOfCompetitionException, InvalidNumberOfGroupException {
-		if(typeCompetition.equals("league")){
+	public Competition createCompetition(String typeCompetition,List<Competitor> listOfCompetitors, int nbGroups,DisplayerInterface displayer) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception, NoSuchTypeOfCompetitionException, InvalidNumberOfGroupException {
+		if(typeCompetition.toLowerCase().equals("league")){
 			return new League(listOfCompetitors, displayer);
 		}
-		else if(typeCompetition.equals("tournament")) {
+		else if(typeCompetition.toLowerCase().equals("tournament")) {
 			return new Tournament(listOfCompetitors,displayer);
 		}
-		else if(typeCompetition.equals("master")) {
-			return new Master(listOfCompetitors,displayer, new SelectionStrategyBasicMaster(), nbGroups);
+		else if(typeCompetition.toLowerCase().equals("master")) {
+			return new Master(listOfCompetitors, new SelectionStrategyBasicMaster(), nbGroups,displayer);
 		}
 		
 		throw new NoSuchTypeOfCompetitionException("There is no competition with that name");
 	}
 	
-	
+	/**
+	 * Singleton of the class, it is to be sure that only one instance of the factory exists.
+	 * @return Instance of the factory
+	 */
 	public static CompetitionFactory getInstance() {
 		if(factory == null) {
 			factory = new CompetitionFactory();
