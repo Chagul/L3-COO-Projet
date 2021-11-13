@@ -32,6 +32,9 @@ public class Master extends Competition {
 	 * @throws InvalidNumberOfGroupException Thrown if the master cannot be created with given number of competitors and group
 	 */
 	private void createGroups(List<Competitor> competitors, int nbGroups) throws EmptyCompetitorsListException, InvalidNumberOfGroupException {
+		if(competitors.size() % nbGroups != 0) {
+			throw new InvalidNumberOfGroupException();
+		}
 		int sizeOfGroup = competitors.size()/nbGroups;
 		int index = 0;
 		for(int i = 0; i < nbGroups; i++) {

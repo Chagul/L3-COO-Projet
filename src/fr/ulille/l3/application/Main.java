@@ -50,12 +50,9 @@ public class Main {
 			e.printStackTrace();
 		}
 		for(int i = 0; i < nbOfCompetitors; i++) {
-//			displayer.display("Entre le nom du competiteur");
-//			String name = sc.next();
 			Competitor compet = new Competitor(listOfName.get(rng.nextInt(listOfName.size())));
 			System.out.println(compet);
 			competitors.add(compet);
-//			displayer.display("Competiteur ajouté !");
 		}
 		
 		displayer.display("Veuillez entrer votre type de competition parmi :");
