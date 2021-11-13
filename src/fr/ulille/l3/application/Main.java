@@ -14,9 +14,11 @@ import fr.ulille.l3.competitions.Competition;
 import fr.ulille.l3.competitions.CompetitionFactory;
 import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
+import fr.ulille.l3.exceptions.NoSuchTypeOfStrategyException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.util.BasicDisplayer;
 import fr.ulille.l3.util.TypeOfCompetition;
+import fr.ulille.l3.util.TypeOfStrategy;
 
 /**
  * Main class that runs the project. Asks for competitors and a type of competition before playing it.
@@ -30,14 +32,14 @@ public class Main {
 	public final static Scanner sc = new Scanner(System.in);
 	public final static BasicDisplayer displayer = BasicDisplayer.getInstance();
 
-	public static void main(String[] args) throws NullPointerException, NoSuchTypeOfCompetitionException, CannotCreateCompetitionException {
+	public static void main(String[] args) throws NullPointerException, NoSuchTypeOfCompetitionException, CannotCreateCompetitionException, NoSuchTypeOfStrategyException {
 		List<Competitor> competitors = createListCompetitors();
 		Competition competition = createCompetition(competitors);
 		sc.close();
 		competition.play();
 	}
-	
-	
+
+
 	/**
 	 * Method that open a file as a stream and convert the line in a arrayList of String this method is neccessairy because file in a jar are not considered like file but stream.
 	 * @param pathToFile The path of file that will be opened
@@ -64,18 +66,19 @@ public class Main {
 		return listOfName;
 	}
 
-	private static Competition createCompetition(List<Competitor> competitors) throws NoSuchTypeOfCompetitionException, NullPointerException, CannotCreateCompetitionException {
+	private static Competition createCompetition(List<Competitor> competitors) throws NoSuchTypeOfCompetitionException, NullPointerException, CannotCreateCompetitionException, NoSuchTypeOfStrategyException {
 		displayer.display("Veuillez entrer votre type de competition parmi :");
 		displayer.display("League, Tournament ou Master");
 		String answer = sc.next().toLowerCase();
 		while(!TypeOfCompetition.contains(answer)) {
-				displayer.display("Nom de compétition invalide ! ");
-				displayer.display("League, Tournament ou Master");
-				answer = sc.next().toLowerCase();
-			}
+			displayer.display("Nom de compétition invalide ! ");
+			displayer.display("League, Tournament ou Master");
+			answer = sc.next().toLowerCase();
+		}
 		int nbGroups = 0;
 		Competition competition = null;
 		if(answer.equals("master")) {
+			String strategy = getStrategy();
 			displayer.display("Entrez un nombre de groupes pour le Master");
 			nbGroups = Integer.parseInt(sc.next());
 			if(nbGroups == 0) {
@@ -84,14 +87,28 @@ public class Main {
 				nbGroups = Integer.parseInt(sc.next());
 			}
 			CompetitionFactory factory = new CompetitionFactory();
-			competition = factory.createCompetition(answer, competitors, nbGroups,displayer);
+			competition = factory.createCompetition(answer, competitors, nbGroups,strategy, displayer);
 		}else {
 			CompetitionFactory factory = new CompetitionFactory();
-			competition = factory.createCompetition(answer, competitors, nbGroups,displayer);
+			competition = factory.createCompetition(answer, competitors, displayer);
 		}
 		return competition;
 	}
 
+
+
+	private static String getStrategy() {
+		TypeOfStrategy[] arrayStrategy = TypeOfStrategy.values();
+		int answer = 0;
+		while(answer <= 0 || answer > arrayStrategy.length) {
+			for(int index = 0; index < arrayStrategy.length; index ++) {
+				displayer.display(index+1 + ":" + arrayStrategy[index].getDescription());
+			}
+			displayer.display("Choisissez la strategie de séléction que vous souhaitez utiliser");
+			answer = Integer.parseInt(sc.next());
+		}
+		return arrayStrategy[answer-1].getLabel();
+	}
 
 
 	private static List<Competitor> createListCompetitors() {

@@ -6,12 +6,7 @@ import fr.ulille.l3.modele.Competitor;
  * @author Aurélien, Lucas
  */
 public abstract class Match {
-	/**
 
-	 * @param firstCompetitor The first competitor to play the match
-	 * @param secondComepetitor The second competitor to play the match
-
-	 */
 	protected Competitor firstCompetitor;
 	protected Competitor secondCompetitor;
 

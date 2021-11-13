@@ -7,6 +7,7 @@ import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
 import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
+import fr.ulille.l3.exceptions.NoSuchTypeOfStrategyException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.util.DisplayerInterface;
 import fr.ulille.l3.util.TypeOfCompetition;
@@ -93,8 +94,8 @@ public class Master extends Competition {
 		this.finalStage = null;
 		try {
 			CompetitionFactory factory = CompetitionFactory.getInstance();
-			this.finalStage = factory.createCompetition(TypeOfCompetition.Tournament.getLabel(), qualifiedCompetitors, 0,this.displayer);
-		} catch (NullPointerException | CannotCreateCompetitionException | NoSuchTypeOfCompetitionException e) {
+			this.finalStage = factory.createCompetition(TypeOfCompetition.Tournament.getLabel(), qualifiedCompetitors,this.displayer);
+		} catch (NullPointerException | CannotCreateCompetitionException | NoSuchTypeOfCompetitionException | NoSuchTypeOfStrategyException e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
