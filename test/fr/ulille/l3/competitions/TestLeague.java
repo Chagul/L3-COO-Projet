@@ -2,6 +2,7 @@ package fr.ulille.l3.competitions;
 
 import java.util.List;
 
+import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.modele.Competitor;
 
 /**
@@ -15,7 +16,7 @@ public class TestLeague extends TestCompetition {
 	/**
 	 * Create a league with 5 competitors
 	 */
-	protected Competition createCompetition() throws Exception {
+	protected Competition createCompetition() throws NullPointerException, CannotCreateCompetitionException {
 		this.competitors.add(c1);
 		this.competitors.add(c2);
 		this.competitors.add(c3);

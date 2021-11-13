@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
 import fr.ulille.l3.modele.Competitor;
 
@@ -21,7 +22,7 @@ public class TestTournament extends TestCompetition {
 	 * Create a Tournament with 4 competitors
 	 */
 	@Override
-	protected Competition createCompetition() throws Exception {
+	protected Competition createCompetition() throws NullPointerException, CannotCreateCompetitionException {
 		this.competitors.add(c1);
 		this.competitors.add(c2);
 		this.competitors.add(c3);

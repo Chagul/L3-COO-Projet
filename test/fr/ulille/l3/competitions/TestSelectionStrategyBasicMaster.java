@@ -7,14 +7,22 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.modele.Leaderboard;
 import fr.ulille.l3.util.TestDisplayer;
 
+/**
+ * Tests that concern a basic master strategy specifically 
+ * @author Aurélien, Lucas
+ *
+ */
+@TestInstance(Lifecycle.PER_CLASS)
 class TestSelectionStrategyBasicMaster {
 	
 	protected TestDisplayer displayer = TestDisplayer.getInstance(); 
@@ -37,7 +45,12 @@ class TestSelectionStrategyBasicMaster {
 	protected List<Competitor> expectedSelectedCompetitors;
 	protected List<Competitor> selectedCompetitors;
 	
-	@BeforeEach
+	/**
+	 * Create two leagues of 4 competitors and fix scores to the competitors to artificially create a ranking, then use this ranking to create two lists of competitors :
+	 * - expectedSelectedCompetitors the competitors that should be selected by the strategy 
+	 * - selectedCompetitors the competitors that are actually selected by the strategy by the selection method
+	 */
+	@BeforeAll
 	void init() {
 		c1 = new Competitor("Aurélien");
 		c2 = new Competitor("Lucas");
@@ -78,15 +91,22 @@ class TestSelectionStrategyBasicMaster {
 		SelectionStrategy strategy = new SelectionStrategyBasicMaster();
 		selectedCompetitors = strategy.selection(groups);
 	}
+	
+	/**
+	 * Test if the selection method actually selects the right number of competitors
+	 */
+	@Test
+	void testNumberOfCompetitorsSelected() {
+		assertEquals(expectedSelectedCompetitors.size(), selectedCompetitors.size());
+	}
 
+	/**
+	 * Test if the selection method actually selects the right competitors
+	 */
 	@Test
 	void testSelection() {
 		assertArrayEquals(expectedSelectedCompetitors.toArray(), selectedCompetitors.toArray());
 	}
 	
-	@Test
-	void testNumberOfCompetitorsSelected() {
-		assertEquals(expectedSelectedCompetitors.size(), selectedCompetitors.size());
-	}
 
 }

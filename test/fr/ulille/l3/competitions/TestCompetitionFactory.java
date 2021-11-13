@@ -15,12 +15,18 @@ import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.util.TestDisplayer;
 
+/**
+ * Tests 
+ * @author Aurélien, Lucas
+ *
+ */
 class TestCompetitionFactory {
 
 	private CompetitionFactory factory;
 	private Competitor c1;
 	private Competitor c2;
 	private TestDisplayer displayer = TestDisplayer.getInstance();
+	
 	@BeforeEach
 	public void init() {
 		this.factory = CompetitionFactory.getInstance();

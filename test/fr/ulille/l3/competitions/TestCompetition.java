@@ -11,6 +11,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
 import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
@@ -53,7 +54,7 @@ public abstract class TestCompetition {
 		}
 	}
 
-	protected abstract Competition createCompetition() throws Exception;
+	protected abstract Competition createCompetition() throws CannotCreateCompetitionException;
 	protected abstract int howManyMatchesExpected(List<Competitor> competitors);
 
 	/**
