@@ -1,5 +1,7 @@
 package fr.ulille.l3.competitions;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -12,6 +14,8 @@ class TestMaster extends TestCompetition {
 	protected Competitor c7;
 	protected Competitor c8;
 	protected Competitor c9;
+	protected final int NB_MATCHES_IN_FINALSTAGE = 7;
+	protected final int NB_GROUPS_IN_MASTER = 3;
 
 
 	@Override
@@ -30,24 +34,28 @@ class TestMaster extends TestCompetition {
 		this.competitors.add(c7);
 		this.competitors.add(c8);
 		this.competitors.add(c9);
-		return new Master(this.competitors, new SelectionStrategyBasicMaster(), 3,displayer);
+		return new Master(this.competitors, new SelectionStrategyBasicMaster(), NB_GROUPS_IN_MASTER, displayer);
 	}
 	
 	@Override
 	protected int howManyMatchesExpected(List<Competitor> competitors) {
 		int expectedMatches = 0;
-		for(int i = 0; i < competitors.size(); i++) {
-			expectedMatches += (competitors.size()-1)-i;
+		Master m = (Master) this.competition;
+		for(League l : m.groups) {
+			for(int i = 0; i < l.getNbCompetitors(); i++) {
+				expectedMatches += (l.getNbCompetitors()-1)-i;
+			}
 		}
 		expectedMatches = expectedMatches * 2;
-		expectedMatches += 5;
+		expectedMatches += NB_MATCHES_IN_FINALSTAGE;
 		return expectedMatches;
 	}
 	
 	
 	@Test
 	public void testRightNumberOfGroups() {
-		
+		Master m = (Master) this.competition;
+		assertEquals(NB_GROUPS_IN_MASTER, m.groups.size());
 	}
 	
 	@Test

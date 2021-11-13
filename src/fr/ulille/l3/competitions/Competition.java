@@ -101,4 +101,12 @@ public abstract class Competition {
 			displayer.display("Player " + entryMap.getKey().getName() + " --> Score " + entryMap.getValue());
 		}
 	}
+	
+	public List<Competitor> getCompetitors() {
+		return competitors;
+	}
+	
+	public int getNbCompetitors() {
+		return this.competitors.size();
+	}
 }
