@@ -1,11 +1,13 @@
 package fr.ulille.l3.competitions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
 import fr.ulille.l3.modele.Competitor;
 
 class TestMaster extends TestCompetition {
@@ -14,9 +16,9 @@ class TestMaster extends TestCompetition {
 	protected Competitor c7;
 	protected Competitor c8;
 	protected Competitor c9;
+	protected SelectionStrategy strategy = new SelectionStrategyBasicMaster();
 	protected final int NB_MATCHES_IN_FINALSTAGE = 7;
 	protected final int NB_GROUPS_IN_MASTER = 3;
-
 
 	@Override
 	protected Competition createCompetition() throws Exception {
@@ -34,7 +36,7 @@ class TestMaster extends TestCompetition {
 		this.competitors.add(c7);
 		this.competitors.add(c8);
 		this.competitors.add(c9);
-		return new Master(this.competitors, new SelectionStrategyBasicMaster(), NB_GROUPS_IN_MASTER, displayer);
+		return new Master(this.competitors, strategy, NB_GROUPS_IN_MASTER, displayer);
 	}
 	
 	@Override
@@ -60,12 +62,17 @@ class TestMaster extends TestCompetition {
 	
 	@Test
 	public void testRightNumberOfCompetitorsInFinalStage() {
-		
+		Master m = (Master) this.competition;
+		m.play();
+		int expectedNbCompetitors = this.strategy.numberOfCompetitorsSelected(m.groups);
+		assertEquals(m.finalStage.getNbCompetitors(), expectedNbCompetitors);
 	}
 	
 	@Test
 	public void testThrowsInvalidNumberOfGroupException() {
-		
+		assertThrows(InvalidNumberOfGroupException.class, () -> {
+			Master invalid = new Master(this.competitors, strategy, 2, displayer);
+		});
 	}
 
 	

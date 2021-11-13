@@ -41,6 +41,14 @@ public class Leaderboard {
 		this.ranking.put(aCompetitor, this.ranking.get(aCompetitor) + 1);
 	}
 
+	/**
+	 * Increment the score of a competitor by the value given in parameter
+	 * @param aCompetitor The competitor that will get a point
+	 * @param scoreToAdd The value that has to be added to the actual score of the competitor
+	 */
+	public void addScore(Competitor aCompetitor, int scoreToAdd) {
+		this.ranking.put(aCompetitor, this.ranking.get(aCompetitor) + scoreToAdd);
+	}
 
 	/**
 	 * 
