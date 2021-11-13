@@ -3,8 +3,8 @@ package fr.ulille.l3.competitions;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
-import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.util.DisplayerInterface;
 
@@ -15,25 +15,24 @@ import fr.ulille.l3.util.DisplayerInterface;
  */
 public class Tournament extends Competition {
 
-	public Tournament(List<Competitor> competitors,DisplayerInterface displayer) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception {
+	public Tournament(List<Competitor> competitors,DisplayerInterface displayer) throws NullPointerException, CannotCreateCompetitionException {
 		super(competitors,displayer);
-		checkModulo2(competitors);
+		checkIfPossible();
 	}
 
 	/**
-	 * Check if the list of competitors contains modulo 2 of competitors. It is needed to check if a Tournament is possible
-	 * @param competitors The list of competitors to be checked
+	 * Check if the number of competitors in the list is a modulo 2. It is needed to check if a Tournament is possible
+	 * @param numberOfCompetitor The list of competitors to be checked
 	 * @throws CompetitorsNumberNotPowerOf2 Exception if modulo 2 is not respected
 	 */
 	private void checkModulo2(List<Competitor> competitors) throws CompetitorsNumberNotPowerOf2Exception {
-		int checkIfPowerOfTwo = competitors.size();
-		while(checkIfPowerOfTwo > 1) {
-			if(checkIfPowerOfTwo%2 != 0){
+		int numberOfCompetitor = competitors.size();
+		while(numberOfCompetitor > 1) {
+			if(numberOfCompetitor%2 != 0){
 				throw new CompetitorsNumberNotPowerOf2Exception();
 			}
-			checkIfPowerOfTwo = checkIfPowerOfTwo/2;
+			numberOfCompetitor = numberOfCompetitor/2;
 		}
-
 	}
 
 	/**
@@ -75,6 +74,11 @@ public class Tournament extends Competition {
 				remainingCompetitors.remove(0);
 			}
 		}
+	}
+
+	@Override
+	protected void checkIfPossible() throws CannotCreateCompetitionException {
+		this.checkModulo2(this.getCompetitors());
 	}
 
 

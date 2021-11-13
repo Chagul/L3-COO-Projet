@@ -3,35 +3,60 @@ package fr.ulille.l3.competitions;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
-import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
 import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.util.DisplayerInterface;
 import fr.ulille.l3.util.TypeOfCompetition;
 
+/**
+ * Master is a type of competition where you have a group phase, and then a final phase. You can act on how the competition will be handled by changing the strategy.
+ * @author Aurélien, Lucas
+ *
+ */
 public class Master extends Competition {
 	
 	protected SelectionStrategy strategy;
 	protected List<League> groups;
 	protected Competition finalStage;
 
-	public Master(List<Competitor> competitors, SelectionStrategy selection, int nbGroups,DisplayerInterface displayer) throws NullPointerException, EmptyCompetitorsListException, InvalidNumberOfGroupException {
+	public Master(List<Competitor> competitors, SelectionStrategy selection, int nbGroups,DisplayerInterface displayer) throws NullPointerException, CannotCreateCompetitionException {
 		super(competitors, displayer);
 		this.strategy = selection;
 		this.groups = new ArrayList<>();
 		createGroups(competitors, nbGroups);
+		checkIfPossible();
+	}
+	
+	/**
+	 * Check if the number of competitors is a modulo 2. It is needed to check if a Tournament is possible
+	 * @param numberOfCompetitor The number of competitors to be checked
+	 * @throws CompetitorsNumberNotPowerOf2 Exception if modulo 2 is not respected
+	 */
+	private void checkModulo2(int numberOfCompetitor) throws CompetitorsNumberNotPowerOf2Exception {
+		while(numberOfCompetitor > 1) {
+			if(numberOfCompetitor%2 != 0){
+				throw new CompetitorsNumberNotPowerOf2Exception();
+			}
+			numberOfCompetitor = numberOfCompetitor/2;
+		}
+	}
+	
+	@Override
+	protected void checkIfPossible() throws CannotCreateCompetitionException {
+		this.checkModulo2(this.strategy.numberOfCompetitorsSelected(this.groups));
 	}
 
 	/**
-	 * 
+	 * Used to create all the groups of the master.
 	 * @param competitors The list of total competitors
 	 * @param nbGroups The number of groups to be created with the given competitors
-	 * @throws EmptyCompetitorsListException Thrown if the list is empty
-	 * @throws InvalidNumberOfGroupException Thrown if the master cannot be created with given number of competitors and group
+	 * @throws CannotCreateCompetitionException 
+	 * @throws NullPointerException 
 	 */
-	private void createGroups(List<Competitor> competitors, int nbGroups) throws EmptyCompetitorsListException, InvalidNumberOfGroupException {
+	private void createGroups(List<Competitor> competitors, int nbGroups) throws NullPointerException, CannotCreateCompetitionException {
 		if(competitors.size() % nbGroups != 0) {
 			throw new InvalidNumberOfGroupException();
 		}
@@ -54,9 +79,10 @@ public class Master extends Competition {
 
 	/**
 	 * Play the master with the following order :
-	 * Play each group phase
-	 * Select the winners of each group phase with the given strategy
-	 * Play the final stage with tournament rules
+	 * - Play each group phase
+	 * - Select the winners of each group phase with the given strategy
+	 * - Play the final stage with tournament rules
+	 * @param competitors The list of competitors that are taking part in this competition.
 	 * @throws InvalidNumberOfGroupException 
 	 * @throws NoSuchTypeOfCompetitionException 
 	 */
@@ -68,7 +94,7 @@ public class Master extends Competition {
 		try {
 			CompetitionFactory factory = CompetitionFactory.getInstance();
 			this.finalStage = factory.createCompetition(TypeOfCompetition.Tournament.getLabel(), qualifiedCompetitors, 0,this.displayer);
-		} catch (NullPointerException | EmptyCompetitorsListException | CompetitorsNumberNotPowerOf2Exception | NoSuchTypeOfCompetitionException | InvalidNumberOfGroupException e) {
+		} catch (NullPointerException | CannotCreateCompetitionException | NoSuchTypeOfCompetitionException e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
@@ -77,6 +103,9 @@ public class Master extends Competition {
 		this.matchesPlayed += this.finalStage.matchesPlayed;
 	}
 
+	/**
+	 * Used to play every group 
+	 */
 	private void playGroups(){
 		for(League l : this.groups) {
 			l.play();

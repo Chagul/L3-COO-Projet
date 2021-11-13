@@ -2,7 +2,7 @@
 
 import java.util.List;
 
-import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
+import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.util.DisplayerInterface;
 
@@ -13,8 +13,9 @@ import fr.ulille.l3.util.DisplayerInterface;
  */
 public class League extends Competition {
 
-	public League(List<Competitor> competitors,DisplayerInterface displayer) throws NullPointerException, EmptyCompetitorsListException {
+	public League(List<Competitor> competitors,DisplayerInterface displayer) throws NullPointerException, CannotCreateCompetitionException {
 		super(competitors,displayer);
+		checkIfPossible();
 	}
 	
 	/**
@@ -32,6 +33,11 @@ public class League extends Competition {
 		this.showRanking();
 		
 		
+	}
+
+	@Override
+	protected void checkIfPossible() throws CannotCreateCompetitionException{
+		//Nothing to check
 	}
 	
 }

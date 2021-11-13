@@ -2,6 +2,7 @@ package fr.ulille.l3.competitions;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
-import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
-import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
+import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.util.TestDisplayer;
@@ -30,29 +29,29 @@ class TestCompetitionFactory {
 	}
 	
 	@Test
-	void testCreateLeague() throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception, NoSuchTypeOfCompetitionException {
+	void testCreateLeague() {
 		List<Competitor> competitors = new ArrayList<>();
 		competitors.add(c1); competitors.add(c2);
 		Competition league = null;
 		try {
 			league = factory.createCompetition("League", competitors, 0,displayer);
-		} catch (NullPointerException | EmptyCompetitorsListException | CompetitorsNumberNotPowerOf2Exception
-				| NoSuchTypeOfCompetitionException | InvalidNumberOfGroupException e) {
+		} catch (NullPointerException | CannotCreateCompetitionException | NoSuchTypeOfCompetitionException e) {
 			e.printStackTrace();
+			fail();
 		}
 		assertEquals(League.class, league.getClass());
 	}
 
 	@Test
-	void testCreateTournament() throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception, NoSuchTypeOfCompetitionException {
+	void testCreateTournament() {
 		List<Competitor> competitors = new ArrayList<>();
 		competitors.add(c1); competitors.add(c2);
 		Competition tournament = null;
 		try {
 			tournament = factory.createCompetition("Tournament", competitors, 0,displayer);
-		} catch (NullPointerException | EmptyCompetitorsListException | CompetitorsNumberNotPowerOf2Exception
-				| NoSuchTypeOfCompetitionException | InvalidNumberOfGroupException e) {
+		} catch (NullPointerException | CannotCreateCompetitionException | NoSuchTypeOfCompetitionException e) {
 			e.printStackTrace();
+			fail();
 		}
 		assertEquals(Tournament.class, tournament.getClass());
 	}

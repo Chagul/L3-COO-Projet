@@ -10,7 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
+import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.modele.Leaderboard;
 import fr.ulille.l3.util.TestDisplayer;
@@ -58,7 +58,7 @@ class TestSelectionStrategyBasicMaster {
 		try {
 			group1 = new League(competitorsInGroup1, displayer);
 			group2 = new League(competitorsInGroup2, displayer);
-		} catch (NullPointerException | EmptyCompetitorsListException e) {
+		} catch (NullPointerException | CannotCreateCompetitionException e) {
 			e.printStackTrace();
 			fail();
 		}

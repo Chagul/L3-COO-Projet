@@ -3,6 +3,7 @@ package fr.ulille.l3.competitions;
 import java.util.List;
 import java.util.Map;
 
+import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfMatchException;
 import fr.ulille.l3.match.Match;
@@ -34,6 +35,8 @@ public abstract class Competition {
 		this.displayer = displayer;
 	}
 
+	protected abstract void checkIfPossible() throws CannotCreateCompetitionException;
+	
 	public void play() {
 		this.play(competitors);
 	}

@@ -2,9 +2,7 @@ package fr.ulille.l3.competitions;
 
 import java.util.List;
 
-import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
-import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
-import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
+import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.util.DisplayerInterface;
@@ -24,12 +22,10 @@ public class CompetitionFactory {
 	 * @param listOfCompetitors specify the competitors that take part in the created competition.
 	 * @return a new instance of the competition type you specify, using all the competitors.
 	 * @throws NullPointerException
-	 * @throws EmptyCompetitorsListException
-	 * @throws CompetitorsNumberNotPowerOf2Exception
 	 * @throws NoSuchTypeOfCompetitionException
-	 * @throws InvalidNumberOfGroupException 
+	 * @throws CannotCreateCompetitionException 
 	 */
-	public Competition createCompetition(String typeCompetition,List<Competitor> listOfCompetitors, int nbGroups,DisplayerInterface displayer) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception, NoSuchTypeOfCompetitionException, InvalidNumberOfGroupException {
+	public Competition createCompetition(String typeCompetition,List<Competitor> listOfCompetitors, int nbGroups,DisplayerInterface displayer) throws NullPointerException, NoSuchTypeOfCompetitionException, CannotCreateCompetitionException {
 		if(typeCompetition.toLowerCase().equals(TypeOfCompetition.League.getLabel())){
 			return new League(listOfCompetitors, displayer);
 		}
