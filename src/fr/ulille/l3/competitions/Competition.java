@@ -36,12 +36,11 @@ public abstract class Competition {
 	}
 
 	protected abstract void checkIfPossible() throws CannotCreateCompetitionException;
+	protected abstract void play(List<Competitor> competitors);
 	
 	public void play() {
 		this.play(competitors);
 	}
-
-	protected abstract void play(List<Competitor> competitors);
 
 	/**
 	 * Default behaviour of a Match, winner is chosen randomly at this point

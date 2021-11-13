@@ -79,7 +79,7 @@ firefox index.html
 ## Matchs
 ![umlMatch](./Screenshots/umlMatch.png "UML des matchs")
 
-## Modèle V1
+## Modèle
 ![umlModel](./Screenshots/umlModele.png "UML du modèle")
 
 ## Exception V1
@@ -129,10 +129,15 @@ Nous avons créer une interface pour les displayer. Le but est simple, pouvoir c
 
 Ce design pattern (strategy) à été utilisé dans la V2 du projet afin de mieux respecter les valeurs de l'open closed. En effet grâce à cette strategy nous pouvons décider de juste implémenter une nouvelle classe qui inclu l'interface Selection Strategy et redefinir le mode de séléction de la première phase à la seconde phase d'un master et de ce fait nous n'avons pas besoin de modifier le code de la classe master. 
 
-## Enum type of competition (V2)
+## Enum typeOfCompetition (V2)
 
 Nous avons décidé de créer également une énumeration enrichie qui ne sert pour le moment que pour les noms des différentes compétitions, cette énumération nous permet de centraliser les Strings que nous utilisons dans le code pour décider quel compétitions créer. Cela permet d'uniformiser ces Strings dans tout le code.
 
+## Héritage d'exception (V2)
+
+Nous avons rajouter une couche d'abstraction au niveau des exceptions. Cela nous permet de regrouper les exceptions concernant les problèmes de création de compétitions sous la même classe, CannotCreateCOmpetitionException. En plus d'améliorer la visibilté, cela nous permet de throws ce type d'exception dans l'abstraction de compétition.
+
+
 # V2 Remarques générales
 
-Dans cette V2 nous devions implémenter un nouveau type de compétition nommé Master. Cette compétition est prévue de telle sorte à avoir une première phase de qualification, une de séléction et finalement une phase finale avec les joueurs séléctionnés. Pour réaliser cette V2, nous avons donc décider de reprendre ce que nous avions déjà créé, nous avons donc effectué ce fonctionnement avec le principe suivant : une liste de compétition qui représente la première partie du master, chaque compétition dans cette liste étant joué une par une. Pour la selection nous avons, comme vu précédemment, implémenter un design pattern de strategy pour pouvoir définir les règles d'accésibilité a la phase finale. Pour finir pour la phase finale, celle ci est définie comme un Tournamenent qui est joué avec les joueurs qualifiés. Cette implémentation était assez facile à réaliser comme nous avions pensé au principe open-closed dès la v1.
+Dans cette V2 nous devions implémenter un nouveau type de compétition nommé Master. Cette compétition est prévue de telle sorte à avoir une première phase de qualification, une de séléction et finalement une phase finale avec les joueurs séléctionnés. Pour réaliser cette V2, nous avons donc décider de reprendre ce que nous avions déjà créé, nous avons donc effectué ce fonctionnement avec le principe suivant : une liste de compétition qui représente la première partie du master, chaque compétition dans cette liste étant joué une par une. Pour la selection nous avons, comme vu précédemment, implémenter un design pattern de strategy pour pouvoir définir les règles d'accésibilité a la phase finale. Pour finir pour la phase finale, celle ci est définie comme un Tournamenent qui est joué avec les joueurs qualifiés. Cette implémentation était assez facile à réaliser comme nous avions pensé au principe open-closed dès la v1. Nous avons également rajouté une méthode qui permet pour chaque compétition de vérifier si celle ci est créable. A la fin de chaque constructeur, cette méthode est appelée et ensuite vérifiera selon le type de compétition et ses paramètres de création si la création est en effet possible.

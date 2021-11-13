@@ -12,12 +12,11 @@ import java.util.Scanner;
 
 import fr.ulille.l3.competitions.Competition;
 import fr.ulille.l3.competitions.CompetitionFactory;
-import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
-import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
-import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
+import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.util.BasicDisplayer;
+import fr.ulille.l3.util.TypeOfCompetition;
 
 /**
  * Main class that runs the project. Asks for competitors and a type of competition before playing it.
@@ -28,8 +27,23 @@ import fr.ulille.l3.util.BasicDisplayer;
 public class Main {
 
 	public final static String name = "res" + File.separator + "name.csv";
+	public final static Scanner sc = new Scanner(System.in);
+	public final static BasicDisplayer displayer = BasicDisplayer.getInstance();
+
+	public static void main(String[] args) throws NullPointerException, NoSuchTypeOfCompetitionException, CannotCreateCompetitionException {
+		List<Competitor> competitors = createListCompetitors();
+		Competition competition = createCompetition(competitors);
+		sc.close();
+		competition.play();
+	}
 	
-	public ArrayList<String> getNameFromFile(String pathToFile){
+	
+	/**
+	 * Method that open a file as a stream and convert the line in a arrayList of String this method is neccessairy because file in a jar are not considered like file but stream.
+	 * @param pathToFile The path of file that will be opened
+	 * @return ArrayList<String> the list with all the name of the CSV file.
+	 */
+	private ArrayList<String> getNameFromFile(String pathToFile){
 		ArrayList<String> listOfName = new ArrayList<>();
 		InputStream is = getClass().getClassLoader().getResourceAsStream(pathToFile);
 		InputStreamReader isr = new InputStreamReader(is);
@@ -49,36 +63,16 @@ public class Main {
 		}
 		return listOfName;
 	}
-	
-	
-	public static void main(String[] args) throws NullPointerException, EmptyCompetitorsListException, CompetitorsNumberNotPowerOf2Exception, NoSuchTypeOfCompetitionException, InvalidNumberOfGroupException {
-		BasicDisplayer displayer = new BasicDisplayer();
-		displayer.display("Entrez votre nombre de compétiteurs");
-		Scanner sc = new Scanner(System.in);
-		int nbOfCompetitors = 0;
-		try {
-			nbOfCompetitors = Integer.parseInt(sc.next());
-		}
-		catch (NumberFormatException exception) {
-			System.exit(1);
-		}
-		
-		List<Competitor> competitors = new ArrayList<>();
-		List<String> listOfName = null;
-		Random rng = new Random();
-		listOfName = new Main().getNameFromFile(name);
 
-		for(int i = 0; i < nbOfCompetitors; i++) {
-			Competitor compet = new Competitor(listOfName.get(rng.nextInt(listOfName.size())));
-			System.out.println(compet);
-			competitors.add(compet);
-		}
-		
+	private static Competition createCompetition(List<Competitor> competitors) throws NoSuchTypeOfCompetitionException, NullPointerException, CannotCreateCompetitionException {
 		displayer.display("Veuillez entrer votre type de competition parmi :");
 		displayer.display("League, Tournament ou Master");
-		
-		String answer = sc.next();
-		answer = answer.toLowerCase();
+		String answer = sc.next().toLowerCase();
+		while(!TypeOfCompetition.contains(answer)) {
+				displayer.display("Nom de compétition invalide ! ");
+				displayer.display("League, Tournament ou Master");
+				answer = sc.next().toLowerCase();
+			}
 		int nbGroups = 0;
 		Competition competition = null;
 		if(answer.equals("master")) {
@@ -95,8 +89,31 @@ public class Main {
 			CompetitionFactory factory = new CompetitionFactory();
 			competition = factory.createCompetition(answer, competitors, nbGroups,displayer);
 		}
-		sc.close();
+		return competition;
+	}
 
-		competition.play();
+
+
+	private static List<Competitor> createListCompetitors() {
+		displayer.display("Entrez votre nombre de compétiteurs");
+		int nbOfCompetitors = 0;
+		try {
+			nbOfCompetitors = Integer.parseInt(sc.next());
+		}
+		catch (NumberFormatException exception) {
+			System.exit(1);
+		}
+
+		List<Competitor> competitors = new ArrayList<>();
+		List<String> listOfName = null;
+		Random rng = new Random();
+		listOfName = new Main().getNameFromFile(name);
+
+		for(int i = 0; i < nbOfCompetitors; i++) {
+			Competitor compet = new Competitor(listOfName.get(rng.nextInt(listOfName.size())));
+			System.out.println(compet);
+			competitors.add(compet);
+		}
+		return competitors;
 	}
 }
