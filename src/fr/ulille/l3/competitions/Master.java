@@ -71,11 +71,13 @@ public class Master extends Competition {
 		}
 		this.displayer.display("\n play final stage");
 		this.finalStage.play();
+		this.matchesPlayed += this.finalStage.matchesPlayed;
 	}
 
 	private void playGroups(){
 		for(League l : this.groups) {
 			l.play();
+			this.matchesPlayed += l.matchesPlayed;
 		}
 	}
 }
