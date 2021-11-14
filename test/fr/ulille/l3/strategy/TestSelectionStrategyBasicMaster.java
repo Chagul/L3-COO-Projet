@@ -1,8 +1,5 @@
 package fr.ulille.l3.strategy;
 
-import fr.ulille.l3.competitions.SelectionStrategy;
-import fr.ulille.l3.competitions.SelectionStrategyBasicMaster;
-
 /**
  * Tests that concern a basic master strategy specifically 
  * @author Aurélien, Lucas

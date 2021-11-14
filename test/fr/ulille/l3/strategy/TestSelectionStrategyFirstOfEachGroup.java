@@ -1,8 +1,5 @@
 package fr.ulille.l3.strategy;
 
-import fr.ulille.l3.competitions.SelectionStrategy;
-import fr.ulille.l3.competitions.SelectionStrategyFirstOfEachGroup;
-
 /**
  * Test that concern a first of each group strategy specifically 
  * @author Aurélien, Lucas
