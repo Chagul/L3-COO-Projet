@@ -9,23 +9,23 @@ import fr.ulille.l3.competitions.SelectionStrategyBasicMaster;
  *
  */
 class TestSelectionStrategyBasicMaster extends TestSelectionStrategy {
-    
-    /**
-     * Add to the list of the expected selected competitors the right competitors and gives a default master strategy
-     * @return SelectionStrategyBasicMaster strategy
-     */
-    @Override
-    protected SelectionStrategy createStrategy() {
-        createExpectedSelectedCompetitors();
-        return new SelectionStrategyBasicMaster();
-    }
+	
+	/**
+	 * Add to the list of the expected selected competitors the right competitors and gives a default master strategy
+	 * @return SelectionStrategyBasicMaster strategy
+	 */
+	@Override
+	protected SelectionStrategy createStrategy() {
+		createExpectedSelectedCompetitors();
+		return new SelectionStrategyBasicMaster();
+	}
 
-    /**
-     * Add the correct competitors that should be selected in the list
-     */
-    protected void createExpectedSelectedCompetitors() {
-        expectedSelectedCompetitors.add(c1); expectedSelectedCompetitors.add(c2); expectedSelectedCompetitors.add(c5); 
-        expectedSelectedCompetitors.add(c6); expectedSelectedCompetitors.add(c3); expectedSelectedCompetitors.add(c7);
-    }
+	/**
+	 * Add the correct competitors that should be selected in the list
+	 */
+	protected void createExpectedSelectedCompetitors() {
+		expectedSelectedCompetitors.add(c1); expectedSelectedCompetitors.add(c2); expectedSelectedCompetitors.add(c5); 
+		expectedSelectedCompetitors.add(c6); expectedSelectedCompetitors.add(c3); expectedSelectedCompetitors.add(c7);
+	}
 
 }

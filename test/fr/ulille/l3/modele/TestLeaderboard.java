@@ -10,7 +10,11 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import fr.ulille.l3.competitions.Competition;
+import fr.ulille.l3.competitions.League;
+import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.EmptyCompetitorsListException;
+import fr.ulille.l3.util.TestDisplayer;
 
 /**
  * Tests that concern the leaderboard specifically 
@@ -86,6 +90,34 @@ public class TestLeaderboard {
 		assertEquals(2, ranks.get(c3));
 	}
 	
+	/**
+	 * Test if the scores are incremented when addScore is called
+	 */
+	@Test
+	void testAddScore() {
+		leaderboard.addScore(c3, 2);
+		leaderboard.addScore(c3, 1);
+		leaderboard.addScore(c2, 5);
+		Map<Competitor, Integer> ranks = leaderboard.getRanking();
+		assertEquals(0, ranks.get(c1));
+		assertEquals(5, ranks.get(c2));
+		assertEquals(3, ranks.get(c3));
+	}
 	
+	/**
+	 * Test if the score of the winner of a match is correctly incremented 
+	 */
+	@Test
+	void testGoodAttributionOfPointAfterAMatch() {
+		Competition l = null;
+		try {
+			l = new League(players, TestDisplayer.getInstance());
+		} catch (NullPointerException | CannotCreateCompetitionException e) {
+			e.printStackTrace();
+			System.exit(1);
+		}
+		Competitor winner = l.playMatch(c1,  c2);
+		assertEquals(1, l.ranking().get(winner));
+	}
 
 }
