@@ -1,4 +1,4 @@
-package fr.ulille.l3.util;
+package fr.ulille.l3.strategy;
 
 public enum TypeOfStrategy {
 	SelectionStrategyFirstOfEachGroup("premierChaqueGroupe","Le premier de chaque groupe est choisi"),SelectionStrategyBasicMaster("deuxMeilleur","Les deux premiers de chaque groupe sont choisis et les meilleurs troisièmes sur tout le reste sont choisis");

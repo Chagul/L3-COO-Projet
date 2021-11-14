@@ -1,7 +1,6 @@
-package fr.ulille.l3.competitions;
+package fr.ulille.l3.strategy;
 
 import fr.ulille.l3.exceptions.NoSuchTypeOfStrategyException;
-import fr.ulille.l3.util.TypeOfStrategy;
 
 public class StrategyFactory {
 

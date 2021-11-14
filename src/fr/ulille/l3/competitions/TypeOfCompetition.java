@@ -1,4 +1,4 @@
-package fr.ulille.l3.util;
+package fr.ulille.l3.competitions;
 
 public enum TypeOfCompetition {
 	League("league"),Tournament("tournament"),Master("master");

@@ -1,9 +1,10 @@
-package fr.ulille.l3.competitions;
+package fr.ulille.l3.strategy;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import fr.ulille.l3.competitions.League;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.util.MapUtil;
 

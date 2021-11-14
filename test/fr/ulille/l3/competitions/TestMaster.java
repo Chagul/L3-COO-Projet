@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
 import fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.strategy.SelectionStrategy;
+import fr.ulille.l3.strategy.SelectionStrategyBasicMaster;
 
 /**
  * Tests that concern a Master specifically 

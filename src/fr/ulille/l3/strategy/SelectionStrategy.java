@@ -1,7 +1,8 @@
-package fr.ulille.l3.competitions;
+package fr.ulille.l3.strategy;
 
 import java.util.List;
 
+import fr.ulille.l3.competitions.League;
 import fr.ulille.l3.modele.Competitor;
 
 /**
@@ -9,7 +10,7 @@ import fr.ulille.l3.modele.Competitor;
  * @author Aurélien, Lucas
  *
  */
-interface SelectionStrategy {
+public interface SelectionStrategy {
 	
 	public int numberOfCompetitorsSelected(List<League> groupPhase);
 	public List<Competitor> selection(List<League> groupPhase);

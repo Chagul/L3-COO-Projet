@@ -9,8 +9,8 @@ import fr.ulille.l3.exceptions.InvalidNumberOfGroupException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfStrategyException;
 import fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.strategy.SelectionStrategy;
 import fr.ulille.l3.util.DisplayerInterface;
-import fr.ulille.l3.util.TypeOfCompetition;
 
 /**
  * Master is a type of competition where you have a group phase, and then a final phase. You can act on how the competition will be handled by changing the strategy.

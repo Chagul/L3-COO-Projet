@@ -12,13 +12,13 @@ import java.util.Scanner;
 
 import fr.ulille.l3.competitions.Competition;
 import fr.ulille.l3.competitions.CompetitionFactory;
+import fr.ulille.l3.competitions.TypeOfCompetition;
 import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfStrategyException;
 import fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.strategy.TypeOfStrategy;
 import fr.ulille.l3.util.BasicDisplayer;
-import fr.ulille.l3.util.TypeOfCompetition;
-import fr.ulille.l3.util.TypeOfStrategy;
 
 /**
  * Main class that runs the project. Asks for competitors and a type of competition before playing it.
@@ -32,11 +32,17 @@ public class Main {
 	public final static Scanner sc = new Scanner(System.in);
 	public final static BasicDisplayer displayer = BasicDisplayer.getInstance();
 
-	public static void main(String[] args) throws NullPointerException, NoSuchTypeOfCompetitionException, CannotCreateCompetitionException, NoSuchTypeOfStrategyException {
+	public static void main(String[] args) throws NullPointerException, NoSuchTypeOfCompetitionException, NoSuchTypeOfStrategyException {
 		List<Competitor> competitors = createListCompetitors();
-		Competition competition = createCompetition(competitors);
-		sc.close();
-		competition.play();
+		try {
+			Competition competition = createCompetition(competitors);
+			sc.close();
+			competition.play();
+		}catch(CannotCreateCompetitionException ccce) {
+			displayer.display("Impossible de créer la compétition avec les paramètres fourni !");
+			main(args);
+		}
+
 	}
 
 

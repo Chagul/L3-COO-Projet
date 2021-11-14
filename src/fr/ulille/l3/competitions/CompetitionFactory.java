@@ -6,8 +6,8 @@ import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfStrategyException;
 import fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.strategy.StrategyFactory;
 import fr.ulille.l3.util.DisplayerInterface;
-import fr.ulille.l3.util.TypeOfCompetition;
 
 /**
  * Class implementing the factory method pattern. Use it to create any type of competition.

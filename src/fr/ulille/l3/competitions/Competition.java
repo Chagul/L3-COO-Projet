@@ -48,7 +48,7 @@ public abstract class Competition {
 	 * @param c2 Second competitor of the match
 	 * @return The winner of the match
 	 */
-	protected Competitor playMatch(Competitor c1, Competitor c2) {
+	public Competitor playMatch(Competitor c1, Competitor c2) {
 		Match matchToPlay = createMatch(c1, c2);
 		Competitor winner = matchToPlay.play();
 		incrementScoreOfWinnner(winner);
@@ -91,7 +91,7 @@ public abstract class Competition {
 		return leaderboard.getRanking();
 	}
 	
-	protected Leaderboard getLeaderboard() {
+	public Leaderboard getLeaderboard() {
 		return this.leaderboard;
 	}
 	

@@ -15,6 +15,8 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.modele.Leaderboard;
+import fr.ulille.l3.strategy.SelectionStrategy;
+import fr.ulille.l3.strategy.SelectionStrategyBasicMaster;
 import fr.ulille.l3.util.TestDisplayer;
 
 /**
