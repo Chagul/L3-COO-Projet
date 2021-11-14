@@ -2,6 +2,11 @@ package fr.ulille.l3.strategy;
 
 import fr.ulille.l3.exceptions.NoSuchTypeOfStrategyException;
 
+/**
+ * Class implementing the factory method pattern. Use it to create any type of strategy.
+ * @author Aurélien, Lucas
+ *
+ */
 public class StrategyFactory {
 
 	private static StrategyFactory factory;
