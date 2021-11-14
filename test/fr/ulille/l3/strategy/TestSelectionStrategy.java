@@ -18,6 +18,11 @@ import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.modele.Leaderboard;
 import fr.ulille.l3.util.TestDisplayer;
 
+/**
+ * Abstraction for the selection strategies tests
+ * @author Aurélien, Lucas
+ *
+ */
 @TestInstance(Lifecycle.PER_CLASS)
 abstract class TestSelectionStrategy {
 	

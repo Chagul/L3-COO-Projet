@@ -49,8 +49,7 @@ public abstract class TestCompetition {
 			this.competition = this.createCompetition();
 		}
 		catch (Exception e) {
-			e.printStackTrace();
-			fail("Catched exception");
+			fail();
 		}
 	}
 

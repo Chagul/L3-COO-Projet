@@ -28,7 +28,7 @@ public class CompetitionFactory {
 	 * @throws CannotCreateCompetitionException 
 	 * @throws NoSuchTypeOfStrategyException 
 	 */
-	public Competition createCompetition(String typeCompetition,List<Competitor> listOfCompetitors, int nbGroups,String strategy,DisplayerInterface displayer) throws NullPointerException, NoSuchTypeOfCompetitionException, CannotCreateCompetitionException, NoSuchTypeOfStrategyException {
+	public Competition createCompetition(String typeCompetition, List<Competitor> listOfCompetitors, int nbGroups, String strategy, DisplayerInterface displayer) throws NullPointerException, NoSuchTypeOfCompetitionException, CannotCreateCompetitionException, NoSuchTypeOfStrategyException {
 		if(typeCompetition.toLowerCase().equals(TypeOfCompetition.Master.getLabel())) {
 			StrategyFactory subFactory = StrategyFactory.getInstance();
 			return new Master(listOfCompetitors,subFactory.createStrategy(strategy.toLowerCase()), nbGroups,displayer);
@@ -37,7 +37,7 @@ public class CompetitionFactory {
 		throw new NoSuchTypeOfCompetitionException("There is no competition with that name");
 	}
 	
-	public Competition createCompetition(String typeCompetition,List<Competitor> listOfCompetitors,DisplayerInterface displayer) throws NullPointerException, NoSuchTypeOfCompetitionException, CannotCreateCompetitionException, NoSuchTypeOfStrategyException {
+	public Competition createCompetition(String typeCompetition, List<Competitor> listOfCompetitors, DisplayerInterface displayer) throws NullPointerException, NoSuchTypeOfCompetitionException, CannotCreateCompetitionException, NoSuchTypeOfStrategyException {
 		if(typeCompetition.toLowerCase().equals(TypeOfCompetition.League.getLabel())){
 			return new League(listOfCompetitors, displayer);
 		}

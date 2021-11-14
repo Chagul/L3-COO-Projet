@@ -2,6 +2,7 @@ package fr.ulille.l3.modele;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,7 @@ public class TestLeaderboard {
 		try {
 			leaderboard = new Leaderboard(players);
 		} catch (NullPointerException | EmptyCompetitorsListException e) {
-			e.printStackTrace();
+			fail();
 		}
 	}
 

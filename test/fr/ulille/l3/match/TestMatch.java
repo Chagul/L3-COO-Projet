@@ -28,7 +28,7 @@ public abstract class TestMatch {
 		try {
 			match1 = this.createMatch();
 		} catch (Exception e) {
-			fail("Exception catched");
+			fail();
 		}
 	}
 
