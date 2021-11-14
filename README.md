@@ -82,13 +82,16 @@ firefox index.html
 ## Modèle
 ![umlModel](./Screenshots/umlModele.png "UML du modèle")
 
+## Strategy 
+![umlException](./Screenshots/umlStrategy.png "UML des strategy")
+
 ## Exception V1
 ![umlException](./Screenshots/umlException.png "UML des exceptions")
 
 ## Exception V2
 ![umlException](./Screenshots/umlExceptionV2.png "UML des exceptions V2")
 
-
+## MapUtil
 ![umlMapUtil](./Screenshots/umlMapUtil.png "UML de MapUtil")
 
 ## Displayer V1
@@ -121,6 +124,10 @@ Comme pour les matchs et compétitions, les tests qui concernent ces différente
 
 Nous avons décidé d'implémenter une factory pour créer les différentes compétitions. Cela nous permet de centraliser toutes les instanciations à un seul endroit. En plus de respecter le principe SOLID, cela permettra dans le futur de tester plus facilement les classes qui utilisent cette factory. Nous avons également ajouté un singleton pour s'assurer qu'une seule instance de cette factory existe car il n'y a pas de raison d'avoir plusieurs instances.
 
+## Strategy factory et singleton (V2)
+
+De même que pour la competition factory, nous sommes amenés à faire évoluer notre code pour ajouter des stratégie de sélection, c'est pourquoi nous avons mis en place une factory. 
+
 ## Interface displayer (V2)
 
 Nous avons créé une interface pour les displayer. Le but est simple, pouvoir créer différents displayer et être ainsi plus flexible sur l'affichage. Pour donner un exemple nous pouvons désormais créer un displayer pour le fonctionnement normal du programme qui produira l'affichage voulu et d'un autre côté en avoir un prévu pour les tests qui ne produira aucun affichage, ce qui permet aux résultats des tests de ne pas être noyés dans des affichages.
@@ -129,9 +136,13 @@ Nous avons créé une interface pour les displayer. Le but est simple, pouvoir c
 
 Ce design pattern (strategy) à été utilisé dans la V2 du projet afin de mieux respecter les valeurs de l'open closed. En effet grâce à cette strategy nous pouvons décider de juste implémenter une nouvelle classe qui implémente l'interface Selection Strategy et redéfinir le mode de sélection de la première phase à la seconde phase d'un master. De ce fait nous n'avons pas besoin de modifier le code de la classe master. 
 
-## Enum typeOfCompetition (V2)
+## Enum enrichie typeOfCompetition (V2)
 
 Nous avons décidé de créer également une énumeration enrichie qui ne sert pour le moment que pour les noms des différentes compétitions, cette énumération nous permet de centraliser les Strings que nous utilisons dans le code pour décider quelle compétition créer. Cela permet d'uniformiser ces Strings dans tout le code.
+
+## Enum enrichie typeOfStrategy (V2)
+
+Pour les mêmes raison que l'énum précédente, nous avons créé cette enum enrichie pour les types de stratégie. Nous avons également rajouté un paramètres au type typeOfStrategy qui nous permet d'obtenir la description de la stratégie pour l'affichage.
 
 ## Héritage d'exception (V2)
 
