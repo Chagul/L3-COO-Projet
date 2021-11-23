@@ -12,6 +12,7 @@ import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.modele.Leaderboard;
 import fr.ulille.l3.util.DisplayerInterface;
 import fr.ulille.l3.util.MapUtil;
+import fr.ulille.l3.util.MatchObserver;
 
 /**
  * Abstract class that assemble all the commons behavior between all the competition
@@ -25,7 +26,7 @@ public abstract class Competition {
 	protected int matchesPlayed;
 	private MatchFactory matchFactory;
 	protected DisplayerInterface displayer;
-	
+	protected List<MatchObserver> observers;
 
 	public Competition(List<Competitor> competitors,DisplayerInterface displayer) throws NullPointerException, EmptyCompetitorsListException {
 		this.competitors = competitors;
@@ -54,6 +55,7 @@ public abstract class Competition {
 		incrementScoreOfWinnner(winner);
 		incrementMatchesPlayed();
 		this.displayer.display(c1 + " vs " + c2 + " --> Winner : " + winner);
+//		observers.notify(winner);
 		return winner;
 	}
 
