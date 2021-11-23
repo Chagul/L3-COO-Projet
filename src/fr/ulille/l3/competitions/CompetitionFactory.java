@@ -19,14 +19,17 @@ public class CompetitionFactory {
 	private static CompetitionFactory factory;
 	
 	/**
-	 * Create any type of competition that exists in the application.
+	 * Create a master with the given parameters
 	 * @param typeCompetition specify which type of competition has to be instantiate.
 	 * @param listOfCompetitors specify the competitors that take part in the created competition.
+	 * @param nbGroups is the number of groups at the beginning of the master
+	 * @param strategy The string representing the strategy that is selected by the user.
+	 * @param displayer the wanted displayer for different output 
 	 * @return a new instance of the competition type you specify, using all the competitors.
-	 * @throws NullPointerException
-	 * @throws NoSuchTypeOfCompetitionException
-	 * @throws CannotCreateCompetitionException 
-	 * @throws NoSuchTypeOfStrategyException 
+	 * @throws NullPointerException If the list of competitors is not allocated
+	 * @throws NoSuchTypeOfCompetitionException If there is no competitions within the enum of competition
+	 * @throws CannotCreateCompetitionException Thrown if the competitions can't be created with the given parameters 
+	 * @throws NoSuchTypeOfStrategyException Thrown if the Strategy parameters don't belong to the strategy enum
 	 */
 	public Competition createCompetition(String typeCompetition, List<Competitor> listOfCompetitors, int nbGroups, String strategy, DisplayerInterface displayer) throws NullPointerException, NoSuchTypeOfCompetitionException, CannotCreateCompetitionException, NoSuchTypeOfStrategyException {
 		if(typeCompetition.toLowerCase().equals(TypeOfCompetition.Master.getLabel())) {
@@ -36,7 +39,17 @@ public class CompetitionFactory {
 		
 		throw new NoSuchTypeOfCompetitionException("There is no competition with that name");
 	}
-	
+	/**
+	 * Create any type of competition that exists in the application.
+	 * @param typeCompetition specify which type of competition has to be instantiate.
+	 * @param listOfCompetitors specify the competitors that take part in the created competition.
+	 * @param displayer the wanted displayer for different output 
+	 * @return a new instance of the competition type you specify, using all the competitors.
+	 * @throws NullPointerException If the list of competitors is not allocated
+	 * @throws NoSuchTypeOfCompetitionException If there is no competitions within the enum of competition
+	 * @throws CannotCreateCompetitionException Thrown if the competitions can't be created with the given parameters 
+	 * @throws NoSuchTypeOfStrategyException Thrown if the Strategy parameters don't belong to the strategy enum
+	 */
 	public Competition createCompetition(String typeCompetition, List<Competitor> listOfCompetitors, DisplayerInterface displayer) throws NullPointerException, NoSuchTypeOfCompetitionException, CannotCreateCompetitionException, NoSuchTypeOfStrategyException {
 		if(typeCompetition.toLowerCase().equals(TypeOfCompetition.League.getLabel())){
 			return new League(listOfCompetitors, displayer);

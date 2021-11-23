@@ -86,6 +86,7 @@ public abstract class Competition {
 
 	/**
 	 * Display the leaderboard with all the results
+	 * @return The map containing the ranking
 	 */
 	public Map<Competitor,Integer> ranking() {
 		return leaderboard.getRanking();

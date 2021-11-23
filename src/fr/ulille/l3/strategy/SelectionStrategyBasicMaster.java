@@ -22,7 +22,7 @@ public class SelectionStrategyBasicMaster implements SelectionStrategy{
 	
 	/**
 	 * 
-	 * @return List<Competitor> the list of competitors that will access the final phase.
+	 * @return The list of competitors that will access the final phase.
 	 */
 	@Override
 	public List<Competitor> selection(List<League> groupPhase) {

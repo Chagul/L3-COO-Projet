@@ -27,8 +27,7 @@ public class Competitor {
 
 	/**
 	 * Check if two competitors are equals
-	 * @return True if the references of the two competitors are the same, or if they have the same name.
-	 * @return False if the competitor point to null, or if it's not a competitor
+	 * @return True if the references of the two competitors are the same, or if they have the same name, return False if the competitor point to null, or if it's not a competitor
 	 */
 	@Override
 	public boolean equals(Object obj) {
