@@ -27,10 +27,16 @@ public abstract class SpecialObservable {
 		this.matchObservers.remove(observer);
 	}
 	
+	/**
+	 * Notify the observers when the state changes
+	 */
 	public void somethingHappen() {
 		this.fireObservers();
 	}
 	
+	/**
+	 * Call the update method on each observer contained in the list
+	 */
 	protected void fireObservers() {
 		for(MatchObserver o : this.matchObservers) {
 			o.update();
