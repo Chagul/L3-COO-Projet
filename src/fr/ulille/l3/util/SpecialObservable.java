@@ -9,22 +9,22 @@ import java.util.List;
  */
 public abstract class SpecialObservable {
 	
-	private List<MatchObserver> matchObservers;
+	protected List<CompetitionObserver> competitonObservers;
 	
 	/**
 	 * Add an observer to the list of observers
 	 * @param observer The observer to be added
 	 */
-	public void addMatchObserver(MatchObserver observer) {
-		this.matchObservers.add(observer);
+	public void addMatchObserver(CompetitionObserver observer) {
+		this.competitonObservers.add(observer);
 	}
 	
 	/**
 	 * Remove an observer from the list of observers
 	 * @param observer The observer to be removed
 	 */
-	public void removeMatchObserver(MatchObserver observer) {
-		this.matchObservers.remove(observer);
+	public void removeMatchObserver(CompetitionObserver observer) {
+		this.competitonObservers.remove(observer);
 	}
 	
 	/**
@@ -38,7 +38,7 @@ public abstract class SpecialObservable {
 	 * Call the update method on each observer contained in the list
 	 */
 	protected void fireObservers() {
-		for(MatchObserver o : this.matchObservers) {
+		for(CompetitionObserver o : this.competitonObservers) {
 			o.update();
 		}
 	}

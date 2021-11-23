@@ -105,11 +105,12 @@ public class Master extends Competition {
 	 * Used to create the final phase of the master which is a tournament
 	 */
 	private void createFinalStage() {
-		List<Competitor> qualifiedCompetitors = this.qualifyCompetitors();
+		List<Competitor> competitors = new ArrayList<>();
+		competitors = this.qualifyCompetitors();
 		this.finalStage = null;
 		try {
 			CompetitionFactory factory = CompetitionFactory.getInstance();
-			this.finalStage = factory.createCompetition(TypeOfCompetition.Tournament.getLabel(), qualifiedCompetitors,this.displayer);
+			this.finalStage = factory.createCompetition(TypeOfCompetition.Tournament.getLabel(), competitors,this.displayer);
 		} catch (NullPointerException | CannotCreateCompetitionException | NoSuchTypeOfCompetitionException | NoSuchTypeOfStrategyException e) {
 			e.printStackTrace();
 			System.exit(1);
@@ -131,6 +132,9 @@ public class Master extends Competition {
 		for(League l : this.groups) {
 			l.play();
 			this.matchesPlayed += l.matchesPlayed;
+			for(Competitor c : l.getCompetitors()) {
+				this.ranking().put(c, 0);
+			}
 		}
 	}
 }

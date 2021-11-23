@@ -19,10 +19,16 @@ public class BasicMatch extends Match {
 	 * @return randomWinner : the winner of the match
 	 */
 	@Override
-	public Competitor play() {
+	public void play() {
 		Random rng = new Random();
 		int randomWinner = rng.nextInt(2);
-		return randomWinner == 0 ? this.firstCompetitor : this.secondCompetitor;
+		if(randomWinner == 0) {
+			this.winner = this.firstCompetitor;
+			this.loser = this.secondCompetitor;
+		}else {
+			this.winner = this.secondCompetitor;
+			this.loser = this.firstCompetitor;
+		}
 	}
 
 }

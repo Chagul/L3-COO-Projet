@@ -14,6 +14,7 @@ public class Competitor {
 	public Competitor(String name) {
 		this.name = name;
 		idCompetitor = ++cptIdCompetitor;
+		
 	}
 
 	public String getName() {

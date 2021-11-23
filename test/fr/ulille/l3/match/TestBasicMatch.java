@@ -17,7 +17,7 @@ public class TestBasicMatch extends TestMatch{
 	 */
 	@Test
 	void testPlay() {
-		assertEquals(Competitor.class, match1.play().getClass());
+		assertEquals(Competitor.class, match1.getWinner().getClass());
 	}
 
 	@Override

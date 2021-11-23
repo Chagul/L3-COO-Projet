@@ -28,7 +28,7 @@ import fr.ulille.l3.util.BasicDisplayer;
 
 public class Main {
 
-	public final static String name = "src" + File.separator + "res" + File.separator + "name.csv";
+	public final static String name = "res" + File.separator + "name.csv";
 	public final static Scanner sc = new Scanner(System.in);
 	public final static BasicDisplayer displayer = BasicDisplayer.getInstance();
 

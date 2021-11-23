@@ -19,7 +19,7 @@ public class MatchFactory {
 	 * @throws NoSuchTypeOfMatchException thrown when the specified type of match doesn't exist
 	 */
 	public Match createMatch(String matchType, Competitor c1, Competitor c2) throws NoSuchTypeOfMatchException {
-		if(matchType.equals("BasicMatch")) {
+		if(matchType.equals(TypeOfMatch.BasicMatch.getLabel())) {
 			return new BasicMatch(c1, c2);
 		}
 		
