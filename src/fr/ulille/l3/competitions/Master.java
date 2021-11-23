@@ -84,13 +84,28 @@ public class Master extends Competition {
 	 * - Select the winners of each group phase with the given strategy
 	 * - Play the final stage with tournament rules
 	 * @param competitors The list of competitors that are taking part in this competition.
-	 * @throws InvalidNumberOfGroupException 
-	 * @throws NoSuchTypeOfCompetitionException 
 	 */
 	@Override
 	protected void play(List<Competitor> competitors){
 		this.playGroups();
-		List<Competitor> qualifiedCompetitors = this.strategy.selection(groups);
+		this.createFinalStage();
+		this.displayer.display("\n play final stage");
+		this.playFinalStage();
+	}
+	
+	/**
+	 * Use the strategy to select the competitors that should be in the final stage.
+	 * @return a list of competitor
+	 */
+	private List<Competitor> qualifyCompetitors() {
+		return this.strategy.selection(groups);
+	}
+	
+	/**
+	 * Used to create the final phase of the master which is a tournament
+	 */
+	private void createFinalStage() {
+		List<Competitor> qualifiedCompetitors = this.qualifyCompetitors();
 		this.finalStage = null;
 		try {
 			CompetitionFactory factory = CompetitionFactory.getInstance();
@@ -99,7 +114,12 @@ public class Master extends Competition {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		this.displayer.display("\n play final stage");
+	}
+	
+	/**
+	 * Used to play the final phase of the master
+	 */
+	private void playFinalStage() {
 		this.finalStage.play();
 		this.matchesPlayed += this.finalStage.matchesPlayed;
 	}

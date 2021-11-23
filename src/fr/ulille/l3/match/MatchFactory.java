@@ -16,7 +16,7 @@ public class MatchFactory {
 	 * @param c1 First competitor taking part in the match.
 	 * @param c2 Second competitor taking part in the match.
 	 * @return a new instance of the match type you specify, using the competitors.
-	 * @throws NoSuchTypeOfMatchException
+	 * @throws NoSuchTypeOfMatchException thrown when the specified type of match doesn't exist
 	 */
 	public Match createMatch(String matchType, Competitor c1, Competitor c2) throws NoSuchTypeOfMatchException {
 		if(matchType.equals("BasicMatch")) {
