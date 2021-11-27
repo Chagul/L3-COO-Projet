@@ -30,7 +30,6 @@ public class League extends Competition {
 				playMatch(competitors.get(indexCompetitor2), competitors.get(indexCompetitor1));
 			}
 		}
-		this.showRanking();
 		
 		
 	}
@@ -39,5 +38,13 @@ public class League extends Competition {
 	protected void checkIfPossible() throws CannotCreateCompetitionException{
 		//Nothing to check
 	}
-	
+
+	/**
+	 * Send to the displayer the ranking of a league formated for printing
+	 */
+	@Override
+	protected void showRanking() {
+		this.displayer.display("\n*** RANKING LEAGUE ***");
+		super.showRanking();
+	}
 }

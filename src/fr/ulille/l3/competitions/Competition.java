@@ -49,6 +49,7 @@ public abstract class Competition extends SpecialObservable{
 	
 	public void play() {
 		this.play(competitors);
+		this.showRanking();
 	}
 
 	/**
@@ -103,11 +104,13 @@ public abstract class Competition extends SpecialObservable{
 	}
 
 	/**
-	 * Display the leaderboard with all the results
+	 * Display the leaderboard with all the results ordered
 	 * @return The map containing the ranking
 	 */
 	public Map<Competitor,Integer> ranking() {
-		return leaderboard.getRanking();
+		Map<Competitor,Integer> ranks = leaderboard.getRanking();
+		ranks = MapUtil.sortByDescendingValue(ranks);
+		return ranks;
 	}
 	
 	public Leaderboard getLeaderboard() {
@@ -119,10 +122,8 @@ public abstract class Competition extends SpecialObservable{
 	 */
 	protected void showRanking() {
 		Map<Competitor,Integer> ranks = this.ranking();
-		ranks = MapUtil.sortByDescendingValue(ranks);
-		this.displayer.display("\n*** RANKING ***");
 		for (Map.Entry<Competitor,Integer> entryMap : ranks.entrySet()) {
-			displayer.display("Player " + entryMap.getKey().getName() + " --> Score " + entryMap.getValue());
+			displayer.display("Player " + entryMap.getKey().getName() + " --> won " + entryMap.getValue() + " matches");
 		}
 	}
 	

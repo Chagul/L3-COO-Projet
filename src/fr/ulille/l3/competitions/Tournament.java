@@ -49,7 +49,6 @@ public class Tournament extends Competition {
 			Competitor winner = playMatch(c1,c2);
 			removeLooserFromCompetitors(remainingCompetitors, c1, c2, winner);
 		}
-		this.showRanking();
 	}
 
 	/**
@@ -81,7 +80,14 @@ public class Tournament extends Competition {
 		this.checkModulo2(this.getCompetitors());
 	}
 
-
+	/**
+	 * Send to the displayer the ranking of a tournament formated for printing
+	 */
+	@Override
+	protected void showRanking() {
+		this.displayer.display("\n*** RANKING TOURNAMENT ***");
+		super.showRanking();
+	}
 
 }
 

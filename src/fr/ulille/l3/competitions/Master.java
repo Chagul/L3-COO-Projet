@@ -1,7 +1,11 @@
 package fr.ulille.l3.competitions;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.CompetitorsNumberNotPowerOf2Exception;
@@ -11,6 +15,7 @@ import fr.ulille.l3.exceptions.NoSuchTypeOfStrategyException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.strategy.SelectionStrategy;
 import fr.ulille.l3.util.DisplayerInterface;
+import fr.ulille.l3.util.MapUtil;
 
 /**
  * Master is a type of competition where you have a group phase, and then a final phase. You can act on how the competition will be handled by changing the strategy.
@@ -22,7 +27,7 @@ public class Master extends Competition {
 	protected SelectionStrategy strategy;
 	protected List<League> groups;
 	protected Competition finalStage;
-
+	private Map<Competitor,Integer> firstPhaseScore;
 	public Master(List<Competitor> competitors, SelectionStrategy selection, int nbGroups,DisplayerInterface displayer) throws NullPointerException, CannotCreateCompetitionException {
 		super(competitors, displayer);
 		this.strategy = selection;
@@ -91,6 +96,7 @@ public class Master extends Competition {
 		this.createFinalStage();
 		this.displayer.display("\n play final stage");
 		this.playFinalStage();
+		System.out.println("masteeeeeer");
 	}
 	
 	/**
@@ -129,12 +135,38 @@ public class Master extends Competition {
 	 * Used to play every group 
 	 */
 	private void playGroups(){
+		this.firstPhaseScore = new HashMap<Competitor,Integer>();
 		for(League l : this.groups) {
 			l.play();
 			this.matchesPlayed += l.matchesPlayed;
-			for(Competitor c : l.getCompetitors()) {
-				this.ranking().put(c, 0);
+			for(Entry<Competitor, Integer> entry : l.ranking().entrySet()) {
+				this.firstPhaseScore.put(entry.getKey(), entry.getValue());
 			}
 		}
+	}
+	
+	@Override
+	public Map<Competitor,Integer> ranking() {
+		LinkedHashMap<Competitor,Integer> finalRanking = (LinkedHashMap<Competitor, Integer>) this.finalStage.ranking();
+		this.firstPhaseScore = MapUtil.sortByDescendingValue(this.firstPhaseScore);
+		for(Entry<Competitor,Integer> entry : this.firstPhaseScore.entrySet()) {
+			Competitor competitor = entry.getKey();
+			if(finalRanking.containsKey(competitor)) {
+				Integer scoreFinalPhaseCompetitorBeforeFinalPhase = finalRanking.get(competitor);
+				finalRanking.put(competitor, entry.getValue() + scoreFinalPhaseCompetitorBeforeFinalPhase);
+			}else {
+				finalRanking.put(competitor, entry.getValue());
+			}
+		}
+		return finalRanking;
+	}
+	
+	/**
+	 * Send to the displayer the ranking of a master formated for printing
+	 */
+	@Override
+	protected void showRanking() {
+		this.displayer.display("\n*** RANKING FINAL MASTER ***");
+		super.showRanking();
 	}
 }
