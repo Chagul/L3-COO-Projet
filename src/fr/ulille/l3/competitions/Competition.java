@@ -39,9 +39,9 @@ public abstract class Competition extends SpecialObservable{
 		this.matchFactory = new MatchFactory();
 		this.displayer = displayer;
 		this.lastMatch = null;
-		this.competitonObservers = new ArrayList<>();
-		this.addMatchObserver(new Journalist(this));
-		this.addMatchObserver(new Bookmaker(competitors, this));
+		this.competitionObservers = new ArrayList<>();
+		this.addCompetitionObserver(new Journalist(this));
+		this.addCompetitionObserver(new Bookmaker(competitors, this));
 	}
 
 	protected abstract void checkIfPossible() throws CannotCreateCompetitionException;
@@ -65,8 +65,8 @@ public abstract class Competition extends SpecialObservable{
 		Competitor winner = matchToPlay.getWinner();
 		incrementScoreOfWinnner(winner);
 		incrementMatchesPlayed();
-		this.displayer.display(c1 + " vs " + c2 + " --> Winner : " + winner);
-		somethingHappen();
+		this.displayer.display("\n" + c1 + "vs " + c2 + "--> Winner : " + winner + "\n");
+		this.somethingHappened();
 		return winner;
 	}
 

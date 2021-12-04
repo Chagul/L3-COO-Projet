@@ -23,7 +23,6 @@ public class League extends Competition {
 	 */
 	@Override
 	protected void play(List<Competitor> competitors) {
-		displayer.display("League");
 		for(int indexCompetitor1 = 0; indexCompetitor1 < competitors.size(); indexCompetitor1++) {
 			for(int indexCompetitor2 = 1+indexCompetitor1; indexCompetitor2 < competitors.size(); indexCompetitor2++) {
 				playMatch(competitors.get(indexCompetitor1), competitors.get(indexCompetitor2));

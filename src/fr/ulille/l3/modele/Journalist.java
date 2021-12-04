@@ -18,7 +18,7 @@ public class Journalist implements CompetitionObserver, DisplayerInterface {
 	 */
 	@Override
 	public void update() {
-		this.display("REPORT : " + this.competitionObserved.getLastMatch().getWinner() + " won after and incredible match against " + this.competitionObserved.getLastMatch().getLoser());
+		this.display("REPORT : " + this.competitionObserved.getLastMatch().getWinner() + "won after and incredible match against " + this.competitionObserved.getLastMatch().getLoser());
 	}
 
 	/**

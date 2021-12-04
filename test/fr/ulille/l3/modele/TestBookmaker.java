@@ -11,13 +11,13 @@ import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.match.Match;
 import fr.ulille.l3.util.CompetitionObserver;
 
-public class TestBookmaker extends TestObservers {
+public class TestBookmaker extends TestCompetitionObservers {
 	private final Double DEFAULT_ODDS = 1.0;
 	private final Double MODIFIER = 0.1;
 
 	
 	protected Bookmaker createObserver() {
-		return new Bookmaker(competitors, null);
+		return new Bookmaker(this.competitors, null);
 	}
 	
 	/**

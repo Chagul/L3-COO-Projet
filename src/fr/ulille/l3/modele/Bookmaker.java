@@ -35,7 +35,7 @@ public class Bookmaker implements CompetitionObserver, DisplayerInterface{
 	public void update() {
 		Competitor winner = this.competitionObserved.getLastMatch().getWinner();
 		Competitor loser  = this.competitionObserved.getLastMatch().getLoser();
-		this.display("BOOKMAKER: After the win of " + winner + " against " + loser + " with their respective odds " + String.format("%,.1f",this.competitorAndTheirOdds.get(winner)) + " / " + String.format("%,.1f",this.competitorAndTheirOdds.get(loser)));
+		this.display("BOOKMAKER: After the win of " + winner + "against " + loser + "with their respective odds " + String.format("%,.1f",this.competitorAndTheirOdds.get(winner)) + " / " + String.format("%,.1f",this.competitorAndTheirOdds.get(loser)));
 		this.competitorAndTheirOdds.put(winner, this.competitorAndTheirOdds.get(winner)+MODIFIER_INCREASE_ODD_AFTER_WIN);
 		this.competitorAndTheirOdds.put(loser, this.competitorAndTheirOdds.get(loser)-MODIFIER_DECREASE_ODD_AFTER_LOSE);
 		this.display(" their new respective odds are " + String.format("%,.1f",this.competitorAndTheirOdds.get(winner)) + " / " + String.format("%,.1f",this.competitorAndTheirOdds.get(loser)));

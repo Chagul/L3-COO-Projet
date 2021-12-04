@@ -94,9 +94,7 @@ public class Master extends Competition {
 	protected void play(List<Competitor> competitors){
 		this.playGroups();
 		this.createFinalStage();
-		this.displayer.display("\n play final stage");
 		this.playFinalStage();
-		System.out.println("masteeeeeer");
 	}
 	
 	/**

@@ -36,7 +36,7 @@ class TestMatchFactory {
 	 */
 	@Test
 	void testCreateBasicMatch() throws NoSuchTypeOfMatchException {
-		Match basicMatch = this.factory.createMatch("BasicMatch", c1, c2);
+		Match basicMatch = this.factory.createMatch(TypeOfMatch.BasicMatch.getLabel(), c1, c2);
 		assertEquals(BasicMatch.class, basicMatch.getClass());
 	}
 	
