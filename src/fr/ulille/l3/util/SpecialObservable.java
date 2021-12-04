@@ -42,4 +42,8 @@ public abstract class SpecialObservable {
 			o.update();
 		}
 	}
+	
+	public List<CompetitionObserver> getCompetitionObservers(){
+		return this.competitonObservers;
+	}
 }

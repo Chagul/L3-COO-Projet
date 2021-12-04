@@ -50,5 +50,9 @@ public class Bookmaker implements CompetitionObserver, DisplayerInterface{
 		System.out.println(msg);
 		
 	}
+	
+	public Map<Competitor,Double> getCompetitorsAndTheirOdds() {
+		return this.competitorAndTheirOdds;
+	}
 
 }
