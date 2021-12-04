@@ -28,6 +28,7 @@ public class Master extends Competition {
 	protected List<League> groups;
 	protected Competition finalStage;
 	private Map<Competitor,Integer> firstPhaseScore;
+	
 	public Master(List<Competitor> competitors, SelectionStrategy selection, int nbGroups,DisplayerInterface displayer) throws NullPointerException, CannotCreateCompetitionException {
 		super(competitors, displayer);
 		this.strategy = selection;
@@ -88,7 +89,7 @@ public class Master extends Competition {
 	 * - Play each group phase
 	 * - Select the winners of each group phase with the given strategy
 	 * - Play the final stage with tournament rules
-	 * @param competitors The list of competitors that are taking part in this competition.
+	 * @param competitors The list oetCompetitorsf competitors that are taking part in this competition.
 	 */
 	@Override
 	protected void play(List<Competitor> competitors){
@@ -167,4 +168,17 @@ public class Master extends Competition {
 		this.displayer.display("\n*** RANKING FINAL MASTER ***");
 		super.showRanking();
 	}
+
+	public SelectionStrategy getStrategy() {
+		return strategy;
+	}
+
+	public Competition getFinalStage() {
+		return finalStage;
+	}
+
+	public List<League> getGroups() {
+		return groups;
+	}
+	
 }

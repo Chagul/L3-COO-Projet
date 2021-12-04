@@ -1,5 +1,6 @@
 package fr.ulille.l3.competitions;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -72,7 +73,8 @@ class TestMaster extends TestCompetition {
 	}
 	
 	/**
-	 * Test if the right number of group has been created.
+	 * Test if the right number of group has been created.voir un test qui vérifie que la méthode de sélection de la stratégie est bien appelée par play()
+    on aurait également pu tester l'enchainement poules -> sélection -> tournoi final
 	 */
 	@Test
 	public void testRightNumberOfGroups() {
@@ -86,7 +88,7 @@ class TestMaster extends TestCompetition {
 	@Test
 	public void testRightNumberOfCompetitorsInFinalStage() {
 		Master m = (Master) this.competition;
-		m.play();
+		m.play();		
 		int expectedNbCompetitors = this.strategy.numberOfCompetitorsSelected(m.groups);
 		assertEquals(m.finalStage.getNbCompetitors(), expectedNbCompetitors);
 	}
@@ -101,6 +103,18 @@ class TestMaster extends TestCompetition {
 		});
 	}
 
-	
+	/**
+	 * Tests if the selection method from the strategy is called during the play method of master.
+	 */
+	@Test
+	public void selectionMethodIsCalledInPlay() {
+		Master m = (Master) this.competition;
+		List<League> groupsOfMaster = m.getGroups();
+		SelectionStrategy strat = m.getStrategy();
+		m.play();
+		List<Competitor> competitorsThatShouldBeSelected = strat.selection(groupsOfMaster);
+		List<Competitor> actuallySelectedCompetitors = m.getFinalStage().getCompetitors();
+		assertArrayEquals(competitorsThatShouldBeSelected.toArray(), actuallySelectedCompetitors.toArray());
+	}
 
 }
