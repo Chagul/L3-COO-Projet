@@ -10,9 +10,7 @@ import fr.ulille.l3.exceptions.NoSuchTypeOfMatchException;
 import fr.ulille.l3.match.Match;
 import fr.ulille.l3.match.MatchFactory;
 import fr.ulille.l3.match.TypeOfMatch;
-import fr.ulille.l3.modele.Bookmaker;
 import fr.ulille.l3.modele.Competitor;
-import fr.ulille.l3.modele.Journalist;
 import fr.ulille.l3.modele.Leaderboard;
 import fr.ulille.l3.util.DisplayerInterface;
 import fr.ulille.l3.util.MapUtil;
@@ -40,8 +38,6 @@ public abstract class Competition extends SpecialObservable{
 		this.displayer = displayer;
 		this.lastMatch = null;
 		this.competitionObservers = new ArrayList<>();
-		this.addCompetitionObserver(new Journalist(this));
-		this.addCompetitionObserver(new Bookmaker(competitors, this));
 	}
 
 	/**

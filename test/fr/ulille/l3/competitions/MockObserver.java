@@ -15,4 +15,10 @@ public class MockObserver implements CompetitionObserver {
 		cpt++;
 	}
 
+	@Override
+	public void changeCompetition(Competition compet) {
+		//unused
+		
+	}
+
 }

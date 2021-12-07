@@ -16,9 +16,12 @@ import fr.ulille.l3.competitions.TypeOfCompetition;
 import fr.ulille.l3.exceptions.CannotCreateCompetitionException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfStrategyException;
+import fr.ulille.l3.modele.Bookmaker;
 import fr.ulille.l3.modele.Competitor;
+import fr.ulille.l3.modele.Journalist;
 import fr.ulille.l3.strategy.TypeOfStrategy;
 import fr.ulille.l3.util.BasicDisplayer;
+import fr.ulille.l3.util.CompetitionObserver;
 
 /**
  * Main class that runs the project. Asks for competitors and a type of competition before playing it.
@@ -28,7 +31,9 @@ import fr.ulille.l3.util.BasicDisplayer;
 
 public class Main {
 
-	public final static String name = "res" + File.separator + "name.csv";
+	private static final String NAME_CSV = "name.csv";
+	private static final String RESSOURCES_PATH = "ressources";
+	public final static String name = RESSOURCES_PATH + File.separator + NAME_CSV;
 	public final static Scanner sc = new Scanner(System.in);
 	public final static BasicDisplayer displayer = BasicDisplayer.getInstance();
 
@@ -97,6 +102,17 @@ public class Main {
 		}else {
 			CompetitionFactory factory = new CompetitionFactory();
 			competition = factory.createCompetition(answer, competitors, displayer);
+		}
+		displayer.display("Voulez vous des bookmakers et des journalistes sur votre évènement ? \n 1 : Oui \n 2 : Non");
+		answer = "";
+		while(!answer.equals("1") && !answer.equals("2")) {
+			answer = sc.next();
+		}
+		if(answer.equals("1")) {
+			List<CompetitionObserver> observers = new ArrayList<>();
+			observers.add(new Journalist(competition));
+			observers.add(new Bookmaker(competitors, competition));
+			competition.setCompetitionObservers(observers);
 		}
 		return competition;
 	}

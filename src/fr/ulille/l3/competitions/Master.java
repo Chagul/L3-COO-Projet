@@ -14,6 +14,7 @@ import fr.ulille.l3.exceptions.NoSuchTypeOfCompetitionException;
 import fr.ulille.l3.exceptions.NoSuchTypeOfStrategyException;
 import fr.ulille.l3.modele.Competitor;
 import fr.ulille.l3.strategy.SelectionStrategy;
+import fr.ulille.l3.util.CompetitionObserver;
 import fr.ulille.l3.util.DisplayerInterface;
 import fr.ulille.l3.util.MapUtil;
 
@@ -23,12 +24,12 @@ import fr.ulille.l3.util.MapUtil;
  *
  */
 public class Master extends Competition {
-	
+
 	protected SelectionStrategy strategy;
 	protected List<League> groups;
 	protected Competition finalStage;
 	private Map<Competitor,Integer> firstPhaseScore;
-	
+
 	public Master(List<Competitor> competitors, SelectionStrategy selection, int nbGroups,DisplayerInterface displayer) throws NullPointerException, CannotCreateCompetitionException {
 		super(competitors, displayer);
 		this.strategy = selection;
@@ -36,7 +37,7 @@ public class Master extends Competition {
 		createGroups(competitors, nbGroups);
 		checkIfPossible();
 	}
-	
+
 	/**
 	 * Check if the number of competitors is a modulo 2. It is needed to check if a Tournament is possible
 	 * @param numberOfCompetitor The number of competitors to be checked
@@ -50,7 +51,7 @@ public class Master extends Competition {
 			numberOfCompetitor = numberOfCompetitor/2;
 		}
 	}
-	
+
 	@Override
 	protected void checkIfPossible() throws CannotCreateCompetitionException {
 		this.checkModulo2(this.strategy.numberOfCompetitorsSelected(this.groups));
@@ -97,7 +98,7 @@ public class Master extends Competition {
 		this.createFinalStage();
 		this.playFinalStage();
 	}
-	
+
 	/**
 	 * Use the strategy to select the competitors that should be in the final stage.
 	 * @return a list of competitor
@@ -105,7 +106,7 @@ public class Master extends Competition {
 	private List<Competitor> qualifyCompetitors() {
 		return this.strategy.selection(groups);
 	}
-	
+
 	/**
 	 * Used to create the final phase of the master which is a tournament
 	 */
@@ -116,12 +117,17 @@ public class Master extends Competition {
 		try {
 			CompetitionFactory factory = CompetitionFactory.getInstance();
 			this.finalStage = factory.createCompetition(TypeOfCompetition.Tournament.getLabel(), competitors,this.displayer);
+			List<CompetitionObserver> observers = this.getCompetitionObservers();
+			for(CompetitionObserver co : observers) {
+				co.changeCompetition(finalStage);
+			}
+			this.finalStage.setCompetitionObservers(observers);
 		} catch (NullPointerException | CannotCreateCompetitionException | NoSuchTypeOfCompetitionException | NoSuchTypeOfStrategyException e) {
 			e.printStackTrace();
 			System.exit(1);
 		}
 	}
-	
+
 	/**
 	 * Used to play the final phase of the master
 	 */
@@ -136,6 +142,11 @@ public class Master extends Competition {
 	private void playGroups(){
 		this.firstPhaseScore = new HashMap<Competitor,Integer>();
 		for(League l : this.groups) {
+			List<CompetitionObserver> observers = this.getCompetitionObservers();
+			for(CompetitionObserver co : observers) {
+				co.changeCompetition(l);
+			}
+			l.setCompetitionObservers(observers);
 			l.play();
 			this.matchesPlayed += l.matchesPlayed;
 			for(Entry<Competitor, Integer> entry : l.ranking().entrySet()) {
@@ -143,7 +154,7 @@ public class Master extends Competition {
 			}
 		}
 	}
-	
+
 	@Override
 	public Map<Competitor,Integer> ranking() {
 		LinkedHashMap<Competitor,Integer> finalRanking = (LinkedHashMap<Competitor, Integer>) this.finalStage.ranking();
@@ -159,7 +170,7 @@ public class Master extends Competition {
 		}
 		return finalRanking;
 	}
-	
+
 	/**
 	 * Send to the displayer the ranking of a master formated for printing
 	 */
@@ -180,5 +191,5 @@ public class Master extends Competition {
 	public List<League> getGroups() {
 		return groups;
 	}
-	
+
 }

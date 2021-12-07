@@ -39,4 +39,9 @@ public class Journalist implements CompetitionObserver, DisplayerInterface {
 		
 	}
 
+	@Override
+	public void changeCompetition(Competition compet) {
+		this.competitionObserved = compet;		
+	}
+
 }

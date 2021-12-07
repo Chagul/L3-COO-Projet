@@ -64,4 +64,10 @@ public class Bookmaker implements CompetitionObserver, DisplayerInterface{
 		return this.competitorAndTheirOdds;
 	}
 
+	@Override
+	public void changeCompetition(Competition compet) {
+		this.competitionObserved = compet;
+		
+	}
+
 }

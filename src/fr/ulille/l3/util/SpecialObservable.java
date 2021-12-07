@@ -1,5 +1,6 @@
 package fr.ulille.l3.util;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,5 +46,9 @@ public abstract class SpecialObservable {
 	
 	public List<CompetitionObserver> getCompetitionObservers(){
 		return this.competitionObservers;
+	}
+	
+	public void setCompetitionObservers(List<CompetitionObserver> observers) {
+		this.competitionObservers = new ArrayList<>(observers);
 	}
 }
