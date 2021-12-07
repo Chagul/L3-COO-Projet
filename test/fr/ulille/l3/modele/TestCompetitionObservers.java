@@ -21,6 +21,7 @@ public abstract class TestCompetitionObservers {
 	protected TestDisplayer displayer = TestDisplayer.getInstance();
 	protected CompetitionObserver observer = null;
 	protected Competition competition = null;
+	protected List<CompetitionObserver> observers;
 	
 	@BeforeEach
 	public void init() throws NullPointerException, CannotCreateCompetitionException {
@@ -28,6 +29,11 @@ public abstract class TestCompetitionObservers {
 		this.competitors = new ArrayList<Competitor>();
 		this.competitors.add(new Competitor("Aurélien"));this.competitors.add(new Competitor("Lucas"));
 		this.competition = new Tournament(competitors,displayer);
+		CompetitionObserver journalist = new Journalist(this.competition);
+		CompetitionObserver bookmaker = new Bookmaker(this.competitors, this.competition);
+		this.observers = new ArrayList<>();
+		observers.add(journalist); observers.add(bookmaker);
+		this.competition.setCompetitionObservers(observers);
 	}
 
 	protected abstract CompetitionObserver createObserver();
@@ -40,8 +46,6 @@ public abstract class TestCompetitionObservers {
 	 */
 	@Test 
 	public void testObserverObservingCompetition() throws NullPointerException, CannotCreateCompetitionException {
-		this.competitors = new ArrayList<Competitor>();
-		this.competitors.add(new Competitor("Aurélien"));this.competitors.add(new Competitor("Lucas"));
 		Competition competition = new League(competitors,displayer);
 		for(CompetitionObserver o : competition.getCompetitionObservers()) {
 			if(o.getClass().equals(this.observer.getClass())) {
