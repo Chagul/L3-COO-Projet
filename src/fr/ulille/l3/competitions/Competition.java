@@ -44,6 +44,10 @@ public abstract class Competition extends SpecialObservable{
 		this.addCompetitionObserver(new Bookmaker(competitors, this));
 	}
 
+	/**
+	 * Checks the parameters to know if the competition can be correctly created or not.
+	 * @throws CannotCreateCompetitionException If the competition can't be created
+	 */
 	protected abstract void checkIfPossible() throws CannotCreateCompetitionException;
 	protected abstract void play(List<Competitor> competitors);
 	

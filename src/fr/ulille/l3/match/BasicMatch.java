@@ -16,7 +16,7 @@ public class BasicMatch extends Match {
 	
 	/**
 	 * Play a basic match where the winner is chosen randomly
-	 * @return randomWinner : the winner of the match
+	 * Sets the winner and loser attributes correctly depending on the result of the match
 	 */
 	@Override
 	public void play() {

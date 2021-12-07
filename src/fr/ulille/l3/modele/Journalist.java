@@ -4,11 +4,19 @@ import fr.ulille.l3.competitions.Competition;
 import fr.ulille.l3.util.CompetitionObserver;
 import fr.ulille.l3.util.DisplayerInterface;
 
+/**
+ * Journalist watching a competition and writing his comments on a stream
+ * @author Aurélien, Lucas
+ *
+ */
 public class Journalist implements CompetitionObserver, DisplayerInterface {
 
 	private Competition competitionObserved;
 	
-	
+	/**
+	 * Creates a journalist that watches a specific competition
+	 * @param theCompetitionObserved The competition that this journalist will watch.
+	 */
 	public Journalist(Competition theCompetitionObserved) {
 		this.competitionObserved = theCompetitionObserved;
 	}

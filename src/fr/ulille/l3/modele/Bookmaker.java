@@ -8,7 +8,11 @@ import fr.ulille.l3.competitions.Competition;
 import fr.ulille.l3.util.CompetitionObserver;
 import fr.ulille.l3.util.DisplayerInterface;
 
-
+/**
+ * Bookmaker maintaining and updating odds on the players of a competition
+ * @author Aurélien, Lucas
+ *
+ */
 public class Bookmaker implements CompetitionObserver, DisplayerInterface{
 
 	private Competition competitionObserved;
@@ -19,13 +23,14 @@ public class Bookmaker implements CompetitionObserver, DisplayerInterface{
 	/**
 	 * Create a new bookmaker that is defined by a list of competitors and their odds
 	 * @param competitors The list of the competitors in the competition observed.
+	 * @param theCompetitionObserved A reference to the competition that this bookmaker observe.
 	 */
-	public Bookmaker(List<Competitor> competitors,Competition theCompetitionObsvered) {
+	public Bookmaker(List<Competitor> competitors,Competition theCompetitionObserved) {
 		this.competitorAndTheirOdds = new HashMap<>();
 		for(Competitor c : competitors) {
 			this.competitorAndTheirOdds.put(c, 1.0);
 		}
-		this.competitionObserved = theCompetitionObsvered;
+		this.competitionObserved = theCompetitionObserved;
 	}
 
 	/**
@@ -51,6 +56,10 @@ public class Bookmaker implements CompetitionObserver, DisplayerInterface{
 		
 	}
 	
+	/**
+	 * Getter returning the map of competitors and their respective odds
+	 * @return Map of competitors and their odds
+	 */
 	public Map<Competitor,Double> getCompetitorsAndTheirOdds() {
 		return this.competitorAndTheirOdds;
 	}
