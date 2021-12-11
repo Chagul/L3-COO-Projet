@@ -18,7 +18,7 @@ import fr.ulille.l3.util.MapUtil;
  */
 public class SelectionStrategyBasicMaster implements SelectionStrategy{
 
-	private final int NUMBER_OF_COMPETITOR_SELECTED = 2;
+	private final int NUMBER_OF_COMPETITOR_SELECTED_PER_GROUP = 2;
 	
 	/**
 	 * 
@@ -34,7 +34,7 @@ public class SelectionStrategyBasicMaster implements SelectionStrategy{
 			int indexMap = 0;
 			for(Entry<Competitor, Integer> entry : groupRank.entrySet()) {
 				Competitor currentCompetitor = entry.getKey();
-				if(indexMap < NUMBER_OF_COMPETITOR_SELECTED) {
+				if(indexMap < NUMBER_OF_COMPETITOR_SELECTED_PER_GROUP) {
 					selectedCompetitors.add(currentCompetitor);
 				}else{
 					temporaryCompetitors.add(entry);
