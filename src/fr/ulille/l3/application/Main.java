@@ -140,7 +140,7 @@ public class Main {
 			nbOfCompetitors = Integer.parseInt(sc.next());
 		}
 		catch (NumberFormatException exception) {
-			System.exit(1);
+			return createListCompetitors();
 		}
 
 		List<Competitor> competitors = new ArrayList<>();
