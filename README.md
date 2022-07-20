@@ -18,12 +18,7 @@ Le projet à été développé en Java 11 mais il est possible de le lancer sur 
 
 Si vous avez une clef ssh lancez :
 ```shell
-git clone git@gitlab-etu.fil.univ-lille1.fr:ple/ple_lucas_plancke_aurelien-coo-projet.git
-```
-
-Sinon lancez la commande suivante qui vous demandera d'utiliser vos informations de connexion au gitlab du fil:
-```shell 
-git clone https://gitlab-etu.fil.univ-lille1.fr/ple/ple_lucas_plancke_aurelien-coo-projet.git
+git clone git@github.com:Chagul/COO-Project.git
 ```
 
 ## Compilation en jar du projet
